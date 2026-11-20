@@ -1,0 +1,14 @@
+type,value,applies_to,verified,source
+crate,lfest-main,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0106.html
+crate,lasso-rs,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0107.html
+crate,win-crypto,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0109.html
+crate,monero-api,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0111.html
+crate,monero-rpc-rs,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0112.html
+crate,win-base64-rs,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0113.html
+crate,acceptxmr-rs,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0115.html
+crate,registry-win,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0116.html
+crate,win_run_rs,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0118.html
+crate,windows-service-rs,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0120.html
+crate,libusb1-main,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0121.html
+crate,winx-rs,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0122.html
+crates.io-user,Kraded,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0106.html

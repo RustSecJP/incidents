@@ -1,0 +1,136 @@
+id = "RSJP-C-2023-003"
+title = "利用者 Kraded が公開した、Windows でマルウェアを動かす名前の偽装 crate 12 個（2023年11月）"
+summary = """
+crates.io の利用者 Kraded が、Windows 向けの道具や Monero（暗号資産）関連の crate に名前を似せた 12 個の crate を公開した。RustSec の助言によると、Windows のホストで任意のマルウェアを動かすためのもの。
+2023 年 11 月に削除され、利用者は使えなくされたが、当時は公表されなかったようで、RustSec の助言は 2026-03-26 にまとめて登録された。
+版、ダウンロード数、公開日、ペイロードの中身は記録が残っていないか、公開されていない。
+"""
+status = "published"
+related = [] # 同じ時期のほかの利用者のまとまり（RSJP-C-2023-004, RSJP-C-2023-005）は、束ねる根拠が無いため関連づけていない
+
+[dates] # すべて UTC
+first_malicious_publish = "unknown" # 公表されていない
+discovered = "unknown"              # 公表されていない
+removed = "2023-11-15"               # RustSec の助言の日付。削除の日とは明記されていない
+
+[[members]]
+crate = "lfest-main"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # lfest に名前を似せたと思われる（自分の推測）。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0106"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+[[members]]
+crate = "lasso-rs"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # lasso に名前を似せたと思われる（自分の推測）。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0107"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+[[members]]
+crate = "win-crypto"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # 似せた先ははっきりしない。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0109"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+[[members]]
+crate = "monero-api"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # 似せた先ははっきりしない。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0111"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+[[members]]
+crate = "monero-rpc-rs"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # monero-rpc に名前を似せたと思われる（自分の推測）。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0112"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+[[members]]
+crate = "win-base64-rs"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # 似せた先ははっきりしない。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0113"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+[[members]]
+crate = "acceptxmr-rs"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # acceptxmr に名前を似せたと思われる（自分の推測）。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0115"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+[[members]]
+crate = "registry-win"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # 似せた先ははっきりしない。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0116"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+[[members]]
+crate = "win_run_rs"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # 似せた先ははっきりしない。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0118"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+[[members]]
+crate = "windows-service-rs"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # windows-service に名前を似せたと思われる（自分の推測）。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0120"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+[[members]]
+crate = "libusb1-main"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # libusb1-sys に名前を似せたと思われる（自分の推測）。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0121"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+[[members]]
+crate = "winx-rs"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # winx に名前を似せたと思われる（自分の推測）。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0122"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "same-publisher"
+description = "12 件の RustSec の助言すべてが「利用者 Kraded が公開した名前の偽装のまとまりの一部」と書き、利用者は使えなくされたとしている。"
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2023-0106.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0107.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0109.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0111.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0112.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0113.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0115.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0116.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0118.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0120.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0121.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0122.html",
+]
+
+[[links]]
+kind = "same-advisory-batch"
+description = """
+12 件の助言は、同じ日付（2023-11-15）、同じ文面で、同じコミット 97446b89（PR #2747）で登録され、コミット d245bb75 で番号が割り当てられた。
+同じ PR にはほかの利用者の crate も含まれるが、そちらとの同一性を示す記述（同じペイロード、通信先、コード）は無いため、この記録には含めていない。
+"""
+verified = "self"
+confidence = "high"
+sources = [
+  "https://github.com/rustsec/advisory-db/pull/2747",
+  "https://github.com/rustsec/advisory-db/pull/2740",
+]
+
+[[history]]
+date = "2026-11-20"
+change = "初版"
