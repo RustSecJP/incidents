@@ -1,0 +1,93 @@
+id = "RSJP-C-2025-003"
+title = "同じ利用者が 2025 年 3 月に公開し、ビルド環境の情報を外部へ送ろうとした 4 つの crate（2025年3月公開、2026年11月削除）"
+summary = """
+top_level_crate、shinchina、shinchina-test、build_dep の 4 つは、2025-03-01〜03-03 に公開され、ビルド環境の情報（RustSec の言う telemetry）を任意の URL へ送ろうとしたとして、約 20 か月後の 2026 年 11 月に削除された。
+lib.rs の記録では、4 つとも同じ crates.io の利用者が持っていた。top_level_crate と build_dep は、cargo-cyclonedx のテスト用の crate と同じ名前である。
+送信先、送る中身、目的（攻撃か、調査のための試しか）は公表されていない。
+"""
+status = "published"
+related = [] # 関連するキャンペーン番号
+
+[dates] # すべて UTC
+first_malicious_publish = "2025-03-01" # top_level_crate と shinchina（RustSec の助言による。時刻は不明）
+discovered = "2026-11"                 # Bitbison の通報（日付は公表されていない。助言の日付は 2026-11-06）
+removed = "2026-11"                    # 削除の日時は公表されていない。2026-11-20 に索引に無いことを確認
+
+[[members]]
+crate = "top_level_crate"
+versions = "1 版（2025-03-01 に公開。lib.rs は 0.1.2 と 0.1.3 の 2 版と表示）"
+role = "carrier" # cargo-cyclonedx のテスト用の crate と同じ名前
+ids = ["RUSTSEC-2026-0467"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "実利用の形跡なし（RustSec）"
+
+[[members]]
+crate = "shinchina"
+versions = "1 版（0.1.0、2025-03-01 に公開）"
+role = "carrier"
+ids = ["RUSTSEC-2026-0468"]
+downloads = "実利用の形跡なし（RustSec）"
+
+[[members]]
+crate = "shinchina-test"
+versions = "1 版（0.1.0、2025-03-02 に公開。lib.rs は Mar 3, 2025 と表示）"
+role = "carrier"
+ids = ["RUSTSEC-2026-0472"]
+downloads = "実利用の形跡なし（RustSec）"
+
+[[members]]
+crate = "build_dep"
+versions = "1 版（0.1.1、2025-03-03 に公開）"
+role = "carrier" # cargo-cyclonedx のテスト用の crate と同じ名前
+ids = ["RUSTSEC-2026-0466"]
+downloads = "実利用の形跡なし（RustSec）"
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "same-publisher"
+description = """
+lib.rs の 4 つの crate のページが、どれも「Owned by hackersthan」と表示している。lib.rs の利用者のページは、この利用者が 5 つの crate を作ったとしている。
+crates.io 自体は crate を削除したため、持ち主をもう表示しない。crates.io の利用者の API では、この利用者は 2026-11-20 時点で存在し、持っている crate は 0 件だった。
+lib.rs は crates.io の情報をもとにした非公式のサイトなので、確信度は「中」にとどめる。
+"""
+verified = "self" # lib.rs の表示と crates.io の API を 2026-11-20 に確認
+confidence = "medium"
+sources = [
+  "https://lib.rs/crates/top_level_crate",
+  "https://lib.rs/crates/shinchina",
+  "https://lib.rs/crates/shinchina-test",
+  "https://lib.rs/crates/build_dep",
+  "https://lib.rs/~hackersthan",
+  "https://crates.io/api/v1/users/hackersthan",
+]
+
+[[links]]
+kind = "same-target"
+description = """
+補強のみ（これだけでは束ねない）: top_level_crate と build_dep は、OWASP CycloneDX の cargo-cyclonedx のリポジトリにあるテスト用の crate
+（cargo-cyclonedx/tests/fixtures/build_then_runtime_dep/ の下）と同じ名前。同じ利用者の 5 つ目の crate とみられる runtime_dep_of_runtime_dep も同じ場所の名前。
+lib.rs では、top_level_crate と shinchina の説明文とリポジトリの欄が cargo-cyclonedx のものになっている。
+"""
+verified = "self" # cargo-cyclonedx のリポジトリと lib.rs の表示を確認
+confidence = "medium"
+sources = [
+  "https://github.com/CycloneDX/cyclonedx-rust-cargo/tree/main/cargo-cyclonedx/tests/fixtures/build_then_runtime_dep",
+  "https://lib.rs/crates/top_level_crate",
+  "https://lib.rs/crates/shinchina",
+]
+
+[[links]]
+kind = "similar-dependencies"
+description = """
+補強のみ: lib.rs では、shinchina-test と build_dep の依存（reqwest 0.11 の blocking と json、serde、serde_json、sys-info、whoami 1.4）、build.rs、Rust 2024、MIT、約 11KB が一致する。
+コードそのものが同じかどうかは、公開された解析が無く、確認できていない。
+"""
+verified = "self"
+confidence = "low"
+sources = [
+  "https://lib.rs/crates/shinchina-test",
+  "https://lib.rs/crates/build_dep",
+]
+
+[[history]]
+date = "2026-11-20"
+change = "初版"

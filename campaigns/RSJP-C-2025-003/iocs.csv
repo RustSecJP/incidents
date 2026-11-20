@@ -1,0 +1,6 @@
+type,value,applies_to,verified,source
+crate,top_level_crate,全体,cited,https://rustsec.org/advisories/RUSTSEC-2026-0467.html
+crate,shinchina,全体,cited,https://rustsec.org/advisories/RUSTSEC-2026-0468.html
+crate,shinchina-test,全体,cited,https://rustsec.org/advisories/RUSTSEC-2026-0472.html
+crate,build_dep,全体,cited,https://rustsec.org/advisories/RUSTSEC-2026-0466.html
+crates.io-user,hackersthan,全体（lib.rs の表示による。crates.io は削除済みの crate の持ち主を表示しない）,self,https://lib.rs/~hackersthan
