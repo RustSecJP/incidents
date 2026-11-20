@@ -36,7 +36,7 @@ RSJP-C-YYYY-NNN
 | ファイル | 中身 |
 |---|---|
 | `campaign.toml` | 機械で読める記録（下の項目） |
-| `README.md` | 人が読む解説記事 |
+| `index.md` | 人が読む解説記事 |
 | `iocs.csv` | 痕跡情報（ハッシュ、無害化した通信先など） |
 
 `campaign.toml` の項目:
@@ -46,7 +46,7 @@ RSJP-C-YYYY-NNN
 - **dates**: 最初の悪性版の公開、発見、削除の時刻（UTC）
 - **members**: 関係する crate と版、対応する既存の番号（RUSTSEC / GHSA / MAL / CVE）、役割（乗っ取られた crate、偽装 crate、ペイロードの運び役 など）
 - **links**: 束ねた根拠。1 件ごとに、種類（同じ公開アカウント、同じ通信先、同じコード など）、**自分で確認したか他者の報告に拠るか**、確信度（高・中・低）、出典
-- **score**: RSJP Score の点数と内訳の文字列（[severity-score.md](severity-score.md)）
+- **score**（任意）: 重要度の点数と内訳の文字列（[severity-score.md](severity-score.md)）。採点方式が試案の間は、付けません。
 - **related**: 関連するほかのキャンペーン番号
 - **history**: 更新の履歴
 

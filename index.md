@@ -3,31 +3,21 @@ title: ホーム
 ---
 <div class="hero" data-no-toc markdown="0">
   <h1>RustSecJP incidents</h1>
-  <p class="lead">Rust のサプライチェーン事件（悪意のある crate など）を、事件のまとまり（キャンペーン）単位で整理する記録です。複数の crate にまたがる攻撃を 1 つの番号で束ね、Rust 専用の採点方式で重要度を示します。</p>
+  <p class="lead">Rust のサプライチェーン事件（悪意のある crate など）を、事件のまとまり（キャンペーン）単位で整理する記録です。crate ごとに出る助言を 1 つの番号で束ね、束ねた根拠と確信度を示します。</p>
 </div>
 
-<div class="cards" markdown="0">
-  <a class="card" href="{{ '/campaigns/' | relative_url }}">
-    <span class="tag">記録</span>
-    <h3>キャンペーン</h3>
-    <p>複数の crate にまたがる攻撃を、根拠と確信度つきで 1 つにまとめた記録。</p>
-  </a>
-  <a class="card" href="{{ '/spec/severity-score.html' | relative_url }}">
-    <span class="tag">草案 0.1</span>
-    <h3>RSJP Score</h3>
-    <p>「安全な Rust だけで踏めるか」「ビルド時に動くか」などを軸にした、0.0〜10.0 の重要度。</p>
-  </a>
-  <a class="card" href="{{ '/spec/campaign-id.html' | relative_url }}">
-    <span class="tag">草案 0.1</span>
-    <h3>キャンペーン番号</h3>
-    <p><code>RSJP-C-YYYY-NNN</code>。既存の助言を置き換えず、束ねるためだけの番号。</p>
-  </a>
-  <a class="card" href="{{ site.repo_url }}/issues?q=is%3Aissue+is%3Aopen+label%3A%E8%A8%98%E4%BA%8B%E5%80%99%E8%A3%9C">
-    <span class="tag">募集中</span>
-    <h3>記事の候補</h3>
-    <p>これから書く題材の一覧。出典の追加や誤りの指摘を歓迎します。</p>
-  </a>
-</div>
+## キャンペーンの記録
+
+| 番号 | 題名 | 期間 | crate の数 |
+|---|---|---|---|
+| [`RSJP-C-2025-001`]({{ '/campaigns/RSJP-C-2025-001/' | relative_url }}) | finch を装う crate と、認証情報を盗む sha-* 依存 | 2025-11-20〜12-09 | 5 |
+
+[すべての記録]({{ '/campaigns/' | relative_url }}) ・ [準備中の題材]({{ site.repo_url }}/issues?q=is%3Aissue+is%3Aopen+label%3A%E8%A8%98%E4%BA%8B%E5%80%99%E8%A3%9C)
+
+## 仕様
+
+- [キャンペーン番号 `RSJP-C` の仕様]({{ '/spec/campaign-id.html' | relative_url }})（草案 0.1）
+- [重要度の採点方式の試案]({{ '/spec/severity-score.html' | relative_url }})（草案 0.1。記録が 10 件ほどたまってから、実例に合わせて作り直す予定で、いまは記録には点数を付けていません）
 
 ## 方針
 

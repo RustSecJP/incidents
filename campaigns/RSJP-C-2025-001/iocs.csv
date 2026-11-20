@@ -1,0 +1,9 @@
+type,value,applies_to,verified,source
+crate,sha-rust,第1波,cited,https://blog.rust-lang.org/2025/12/05/crates.io-malicious-crates-finch-rust-and-sha-rust/
+crate,finch-rust,第1波,cited,https://blog.rust-lang.org/2025/12/05/crates.io-malicious-crates-finch-rust-and-sha-rust/
+crate,sha-rst,第2波,cited,https://rustsec.org/advisories/RUSTSEC-2025-0151.html
+crate,finch-rst,第2波,cited,https://rustsec.org/advisories/RUSTSEC-2025-0150.html
+crate,finch_cli_rust,第2波,cited,https://rustsec.org/advisories/RUSTSEC-2025-0152.html
+crates.io-user,face-lessssss,第1波,cited,https://blog.rust-lang.org/2025/12/05/crates.io-malicious-crates-finch-rust-and-sha-rust/
+exfil-endpoint,hxxps://rust-docs-build[.]vercel[.]app/api/v1,第1波（sha-rust）,cited,https://socket.dev/blog/malicious-crate-mimicking-finch-exfiltrates-credentials
+target-file,.env / *.env / config.toml / id.json,第1波（sha-rust）,cited,https://socket.dev/blog/malicious-crate-mimicking-finch-exfiltrates-credentials

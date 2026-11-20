@@ -16,7 +16,7 @@
   <div class="top-in">
     <a class="brand" href="{{ '/' | relative_url }}"><span class="brand-mark" aria-hidden="true">RS</span><span>RustSecJP <b>incidents</b></span></a>
     <nav class="nav" aria-label="メインメニュー">
-      {% assign items = "ホーム|/,キャンペーン|/campaigns/,採点方式|/spec/severity-score.html,計算ツール|/calculator/,番号の仕様|/spec/campaign-id.html" | split: "," %}
+      {% assign items = "ホーム|/,キャンペーン|/campaigns/,番号の仕様|/spec/campaign-id.html" | split: "," %}
       {% for it in items %}{% assign p = it | split: "|" %}
       <a href="{{ p[1] | relative_url }}"{% if page.url == p[1] %} aria-current="page"{% endif %}>{{ p[0] }}</a>
       {% endfor %}

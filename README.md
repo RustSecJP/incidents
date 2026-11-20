@@ -10,9 +10,9 @@ RustSecJP が、Rust のサプライチェーン事件（悪意のある crate �
 | 場所 | 中身 | 状態 |
 |---|---|---|
 | [`spec/campaign-id.md`](spec/campaign-id.md) | キャンペーン番号 `RSJP-C-YYYY-NNN` の仕様 | 草案 0.1 |
-| [`spec/severity-score.md`](spec/severity-score.md) | Rust 専用の重要度の採点方式「RSJP Score」の基準書 | 草案 0.1 |
+| [`spec/severity-score.md`](spec/severity-score.md) | 重要度の採点方式の試案（記録がたまってから作り直す。いまは記録に点数を付けない） | 試案 0.1 |
 | [`campaigns/_template/`](https://github.com/RustSecJP/incidents/tree/main/campaigns/_template) | キャンペーン記録のひな形 | 草案 0.1 |
-| `campaigns/RSJP-C-YYYY-NNN/` | 各キャンペーンの記録（記事・痕跡情報・番号の対応表） | まだありません |
+| [`campaigns/RSJP-C-2025-001/`](campaigns/RSJP-C-2025-001/index.md) | finch を装う crate と、認証情報を盗む sha-* 依存（5 crate） | 公開 |
 
 ## 方針
 

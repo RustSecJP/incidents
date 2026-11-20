@@ -1,0 +1,95 @@
+id = "RSJP-C-2025-001"
+title = "finch を装う crate と、認証情報を盗む sha-* 依存（2025年11月〜12月）"
+summary = """
+ゲノム解析ツールの crate `finch` / `finch_cli` に名前を似せた crate が、認証情報を外部へ送る別の crate に依存する形で crates.io に公開された。
+2025-12-05 に 2 つ（finch-rust、sha-rust）が削除され、その 3 日後に同じ構成の 3 つ（finch-rst、sha-rst、finch_cli_rust）が公開されて、再び削除された。
+"""
+status = "published"
+related = [] # 関連するキャンペーン番号
+
+[dates] # すべて UTC
+first_malicious_publish = "2025-11-20" # sha-rust の最初の版（crates.io チームの報告による。時刻は不明）
+discovered = "2025-12-05"              # Socket から crates.io チームへの通報
+removed = "2025-12-05T15:52:00Z"       # 第 1 波の削除。第 2 波の削除時刻は公表されていない
+
+# ---- 第 1 波 ----
+[[members]]
+crate = "sha-rust"
+versions = "8 版（2025-11-20〜2025-11-25 に公開）"
+role = "carrier"   # 認証情報を盗む本体
+ids = ["RUSTSEC-2025-0146", "GHSA-3mmg-7c2q-8938"]
+downloads = 153
+
+[[members]]
+crate = "finch-rust"
+versions = "1 版（2025-11-25 に公開）"
+role = "typosquat" # finch を装い、sha-rust に依存する
+ids = ["RUSTSEC-2025-0148", "GHSA-f8h5-x737-x4xr"]
+downloads = 28
+
+# ---- 第 2 波 ----
+[[members]]
+crate = "sha-rst"
+versions = "1 版（2025-12-08 に公開）"
+role = "carrier"
+ids = ["RUSTSEC-2025-0151", "GHSA-vgr2-r5hm-f6gf"]
+downloads = 22
+
+[[members]]
+crate = "finch-rst"
+versions = "1 版（2025-12-08 に公開）"
+role = "typosquat" # finch を装う
+ids = ["RUSTSEC-2025-0150", "GHSA-xp79-9mxw-878j"]
+downloads = 21
+
+[[members]]
+crate = "finch_cli_rust"
+versions = "1 版（2025-12-08 に公開）"
+role = "typosquat" # finch_cli を装う
+ids = ["RUSTSEC-2025-0152", "GHSA-6v2j-vr4h-f632"]
+downloads = 18
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "dependency"
+description = "第 1 波: finch-rust は sha-rust に依存していた。"
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://blog.rust-lang.org/2025/12/05/crates.io-malicious-crates-finch-rust-and-sha-rust/",
+  "https://rustsec.org/advisories/RUSTSEC-2025-0148.html",
+]
+
+[[links]]
+kind = "same-publisher"
+description = "第 1 波: 2 つの crate は同じ利用者が公開し、その利用者は無効化された。"
+verified = "cited"
+confidence = "high"
+sources = ["https://blog.rust-lang.org/2025/12/05/crates.io-malicious-crates-finch-rust-and-sha-rust/"]
+
+[[links]]
+kind = "dependency"
+description = "第 2 波: sha-rst は finch-rst と finch_cli_rust の依存として使われ、認証情報を外部へ送るペイロードを含んでいた。"
+verified = "cited"
+confidence = "high"
+sources = ["https://rustsec.org/advisories/RUSTSEC-2025-0151.html"]
+
+[[links]]
+kind = "same-target-and-structure"
+description = """
+第 1 波と第 2 波のつながり: どちらも finch 系の crate を装い、「装う crate ＋ 認証情報を盗む sha-* という名前の依存」という同じ構成をとる。
+名前も sha-rust → sha-rst、finch-rust → finch-rst と 1 文字違いで、第 2 波は第 1 波の削除の 3 日後に公開された。
+ただし、公開した利用者が同じかどうか、送信先が同じかどうかは公表されておらず、同じ攻撃者によるものとは確認できていない。
+"""
+verified = "self"  # 5 つの助言と 2 つの公式記事を突き合わせて確認。攻撃者の同一性は未確認
+confidence = "medium"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2025-0146.html",
+  "https://rustsec.org/advisories/RUSTSEC-2025-0150.html",
+  "https://rustsec.org/advisories/RUSTSEC-2025-0151.html",
+  "https://blog.rust-lang.org/2026/02/13/crates.io-malicious-crate-update/",
+]
+
+[[history]]
+date = "2026-11-20"
+change = "初版"

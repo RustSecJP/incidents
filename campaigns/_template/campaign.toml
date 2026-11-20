@@ -7,6 +7,7 @@ summary = """
 3 行ほどの要約。
 """
 status = "draft" # draft / published / merged / withdrawn
+related = [] # 関連するキャンペーン番号
 
 [dates] # すべて UTC
 first_malicious_publish = "YYYY-MM-DDThh:mm:ssZ"
@@ -26,14 +27,13 @@ verified = "self" # self（自分で確認）/ cited（他者の報告に拠る�
 confidence = "high" # high / medium / low
 sources = ["https://example.invalid/report"]
 
-[score] # spec/severity-score.md を参照
+# [score] は任意。採点方式が試案の間は付けない（spec/severity-score.md を参照）
+[score]
 value = 0.0
 vector = "RSJP-S:0.1/K:M/I:X/T:B/U:N/S:Y/A:X/R:W/E:X/F:R"
 rationale = """
 軸ごとに、なぜその値にしたかを 1 行ずつ書く。
 """
-
-related = [] # 関連するキャンペーン番号
 
 [[history]]
 date = "YYYY-MM-DD"
