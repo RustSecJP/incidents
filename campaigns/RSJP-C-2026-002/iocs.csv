@@ -1,0 +1,14 @@
+type,value,applies_to,verified,source
+crate,time_calibrator,全体,cited,https://rustsec.org/advisories/RUSTSEC-2026-0030.html
+crate,time_calibrators,全体,cited,https://rustsec.org/advisories/RUSTSEC-2026-0031.html
+crate,dnp3times,全体,cited,https://rustsec.org/advisories/RUSTSEC-2026-0032.html
+crate,time-sync,全体,cited,https://rustsec.org/advisories/RUSTSEC-2026-0036.html
+crate,chrono_anchor,全体,cited,https://rustsec.org/advisories/RUSTSEC-2026-0039.html
+exfil-domain,timeapis[.]io,全体（Socket による。正規の timeapi.io とは別のドメイン）,cited,https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files
+exfil-endpoint,hxxp://timeapis[.]io/api/Time/current/zone?timeZone=UTC,chrono_anchor（Socket は全体の痕跡として挙げる）,cited,https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files
+crates.io-user,dictorudin,chrono_anchor,cited,https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files
+author-email,gehakax777@kaoing[.]com,chrono_anchor,cited,https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files
+author-email,jack@kaoing[.]com,どれか 1 つ（Socket は crate 名を挙げていない）,cited,https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files
+github-account,hxxps://github[.]com/suntea279491,chrono_anchor（マニフェストの homepage と repository。記事の時点で 404）,cited,https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files
+github-account,hxxps://github[.]com/dictorudin,chrono_anchor（crates.io の利用者に結び付いた GitHub アカウント）,cited,https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files
+target-file,.env,全体,cited,https://rustsec.org/advisories/RUSTSEC-2026-0031.html

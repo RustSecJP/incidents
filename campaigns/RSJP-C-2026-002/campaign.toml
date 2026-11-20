@@ -1,0 +1,100 @@
+id = "RSJP-C-2026-002"
+title = "時刻ユーティリティを装い、timeapi.io に似せた送信先へ .env を送る crate（2026年2月〜3月）"
+summary = """
+時刻の調整や同期の道具を装った 5 つの crate が、手元の .env ファイルを外部へ送るコードを含んでいた。
+送信先は、正規の時刻 API サービス timeapi.io に 1 文字足した、よく似た名前のドメインだった（timeapi.io 自体は無関係）。
+2026-02-28〜03-04 に公開され、4 つは公開から数時間以内、最後の chrono_anchor は 03-10 に Socket の通報で削除された。
+"""
+status = "published"
+related = [] # 関連するキャンペーン番号
+
+[dates] # すべて UTC
+first_malicious_publish = "2026-02-28" # time_calibrator の唯一の版（RustSec の助言による。時刻は不明）
+discovered = "2026-03-03"              # time_calibrator の通報（RustSec の助言の日付。通報の時刻は不明）
+removed = "2026-03-10"                 # 最後の chrono_anchor の削除（Socket の記事と RustSec の助言による。時刻は不明）
+
+[[members]]
+crate = "time_calibrator"
+versions = "1 版（2026-02-28 に公開）"
+role = "carrier" # 時刻の調整の道具を装い、.env を送る
+ids = ["RUSTSEC-2026-0030", "GHSA-77xj-rrh3-wx3v"]
+downloads = "実利用の形跡なし（RustSec）"
+
+[[members]]
+crate = "time_calibrators"
+versions = "1 版（2026-03-03 に公開、約 3 時間後に削除）"
+role = "carrier"
+ids = ["RUSTSEC-2026-0031", "GHSA-wf45-3gpw-vrqv"]
+downloads = "実際のダウンロードの形跡なし（RustSec）"
+
+[[members]]
+crate = "dnp3times"
+versions = "1 版（2026-03-04 に公開、約 6 時間後に削除）"
+role = "typosquat" # 正規の dnp3time にゆるく似せた名前
+ids = ["RUSTSEC-2026-0032", "GHSA-xhw7-jhmp-j62j"]
+downloads = "実際のダウンロードの形跡なし（RustSec）"
+
+[[members]]
+crate = "time-sync"
+versions = "1 版（2026-03-04 に公開、約 50 分後に削除）"
+role = "carrier"
+ids = ["RUSTSEC-2026-0036", "GHSA-mh23-rw7f-v5pq"]
+downloads = "実際のダウンロードの形跡なし（RustSec）"
+
+[[members]]
+crate = "chrono_anchor"
+versions = "1 版（2026-03-04 に公開、約 6 日後の 2026-03-10 に削除）"
+role = "carrier" # chrono の関連 crate のように見せた名前。難読化を少し加えていた（Socket）
+ids = ["RUSTSEC-2026-0039"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "RustSec は実際のダウンロードの形跡なし、Socket は記録時点で 66 と報告"
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "same-endpoint"
+description = "time_calibrators、dnp3times、time-sync、chrono_anchor の 4 件の RustSec の助言が、いずれも「正規の timeapi.io を装うサーバーへ .env を送ろうとした」と書いている。"
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2026-0031.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0032.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0036.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0039.html",
+]
+
+[[links]]
+kind = "explicit-statement"
+description = """
+dnp3times の助言は「time_calibrator と time_calibrators と同じ攻撃」と書き、time-sync の助言は「ここ数日で 3 回見たのと同じ攻撃」と書いている。
+time_calibrator の助言自体は送信先に触れていないため、time_calibrator を含める根拠は主にこの記述と Socket の記事による。
+"""
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2026-0032.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0036.html",
+]
+
+[[links]]
+kind = "same-endpoint-and-code"
+description = "Socket は 5 つすべてが同じ送信の流れと同じ基盤（よく似たドメイン timeapis[.]io）を使い、コードの型も繰り返されているとして、同じキャンペーンだと高い確信度で判断している。ただし、公開されたコードは chrono_anchor のものだけ。"
+verified = "cited"
+confidence = "medium"
+sources = ["https://socket.dev/blog/5-malicious-rust-crates-posed-as-time-utilities-to-exfiltrate-env-files"]
+
+[[links]]
+kind = "cross-check"
+description = """
+advisory-db の全助言を調べ、timeapi.io に触れているのはこの 5 件のうち 4 件だけで、ほかの助言には無いことを確認した（time_calibrator の助言には書かれていない）。timeapis、Socket が挙げた利用者名、メールのドメインに触れた助言は 1 件も無かった。
+助言を追加したコミットの間隔（03-03〜03-10）と、time_calibrators のコミットの文言「I guess they tried again.」も、一連のものという見方と合う。
+公開した利用者が 5 つで同じかどうかは公表されていない（Socket が名前を挙げたのは chrono_anchor の利用者だけ）。
+"""
+verified = "self"
+confidence = "medium"
+sources = [
+  "https://github.com/rustsec/advisory-db/commit/06ffd2a4",
+  "https://github.com/rustsec/advisory-db",
+]
+
+[[history]]
+date = "2026-11-20"
+change = "初版"
