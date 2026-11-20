@@ -2,12 +2,8 @@
 title: ホーム
 ---
 <div class="hero" data-no-toc markdown="0">
-  <h1>Rust の供給網の事件を、<br>事件のまとまりで読む。</h1>
-  <p class="lead">悪意のある crate は、1 つの攻撃が複数の crate にまたがります。RustSecJP incidents は、ばらばらに出る助言を事件ごとに束ね、Rust 専用の物差しで重要度を示します。</p>
-  <div class="btns">
-    <a class="btn pri" href="{{ '/calculator/' | relative_url }}">重要度を計算してみる</a>
-    <a class="btn" href="{{ '/campaigns/' | relative_url }}">キャンペーンを見る</a>
-  </div>
+  <h1>RustSecJP incidents</h1>
+  <p class="lead">Rust のサプライチェーン事件（悪意のある crate など）を、事件のまとまり（キャンペーン）単位で整理する記録です。複数の crate にまたがる攻撃を 1 つの番号で束ね、Rust 専用の採点方式で重要度を示します。</p>
 </div>
 
 <div class="cards" markdown="0">
