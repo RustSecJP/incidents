@@ -1,0 +1,56 @@
+id = "RSJP-C-2023-005"
+title = "利用者 gabielle55131 が公開した、Windows でマルウェアを動かす名前の偽装 crate 2 つ（2023年11月）"
+summary = """
+crates.io の利用者 gabielle55131 が、Tauri の Windows 通知 crate（tauri-winrt-notification） に名前を似せた 2 つの crate を公開した。RustSec の助言によると、Windows のホストで任意のマルウェアを動かすためのもの。
+2023 年 11 月に削除され、利用者は使えなくされたが、当時は公表されなかったようで、RustSec の助言は 2026-03-26 にまとめて登録された。
+版、ダウンロード数、公開日、ペイロードの中身は記録が残っていないか、公開されていない。
+"""
+status = "published"
+related = [] # 同じ時期のほかの利用者のまとまり（RSJP-C-2023-003, RSJP-C-2023-004）は、束ねる根拠が無いため関連づけていない
+
+[dates] # すべて UTC
+first_malicious_publish = "unknown" # 公表されていない
+discovered = "unknown"              # 公表されていない
+removed = "2023-11-20"               # RustSec の助言の日付。削除の日とは明記されていない
+
+[[members]]
+crate = "tauri-win-rt-notification"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # tauri-winrt-notification に名前を似せたと思われる（自分の推測）。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0108"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+[[members]]
+crate = "tauri-winrt-notifications"
+versions = "不明（RustSec: 版の情報は残っていない）"
+role = "typosquat"  # tauri-winrt-notification に名前を似せたと思われる（自分の推測）。ペイロードがこの crate 自体にあったかは公表されていない
+ids = ["RUSTSEC-2023-0117"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "不明（RustSec: ダウンロードの記録は残っていない）"
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "same-publisher"
+description = "2 件の RustSec の助言すべてが「利用者 gabielle55131 が公開した名前の偽装のまとまりの一部」と書き、利用者は使えなくされたとしている。"
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2023-0108.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0117.html",
+]
+
+[[links]]
+kind = "same-advisory-batch"
+description = """
+2 件の助言は、同じ日付（2023-11-20）、同じ文面で、同じコミット 97446b89（PR #2747）で登録され、コミット d245bb75 で番号が割り当てられた。
+同じ PR にはほかの利用者の crate も含まれるが、そちらとの同一性を示す記述（同じペイロード、通信先、コード）は無いため、この記録には含めていない。
+"""
+verified = "self"
+confidence = "high"
+sources = [
+  "https://github.com/rustsec/advisory-db/pull/2747",
+  "https://github.com/rustsec/advisory-db/pull/2740",
+]
+
+[[history]]
+date = "2026-11-20"
+change = "初版"

@@ -1,0 +1,4 @@
+type,value,applies_to,verified,source
+crate,tauri-win-rt-notification,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0108.html
+crate,tauri-winrt-notifications,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0117.html
+crates.io-user,gabielle55131,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0108.html
