@@ -1,0 +1,122 @@
+id = "RSJP-C-2023-001"
+title = "有名な crate を装い、build.rs でホストの情報を Telegram へ送る crate（2023年8月）"
+summary = """
+利用者 amaperf が、lazy_static、cfg-if、env_logger、once_cell、serde、postgres などに名前を似せた crate を crates.io に公開した。
+最初はほぼ空の版を出し、2023-08-16 の版で build.rs を足して、ビルド時に IP アドレス、国と地域、OS の種類を Telegram のチャンネルへ送るようにした。
+同じ日に Phylum の通報で取り下げられ、08-18 に完全に削除された。RustSec の助言は 2026-03 に後から記録された。
+"""
+status = "published"
+related = ["RSJP-C-2023-002"] # 手口の説明と通報者が同じだけで、同じキャンペーンとは扱わない
+
+[dates] # すべて UTC
+first_malicious_publish = "2023-08-16" # build.rs 入りの最初の版（xrvrv 0.1.1、Phylum の表で 14:48。時間帯は記事に書かれていない）。ほぼ空の最初の版は 2023-08-14
+discovered = "2023-08-16"              # Phylum から Rust Foundation と crates.io チームへの通報
+removed = "2023-08-18T17:22:00Z"       # static.crates.io からの完全な削除（crates.io チーム）。取り下げとアカウントのロックは 08-16
+
+[[members]]
+crate = "postgress"
+versions = "0.1.0（2023-08-14、ほぼ空）、0.1.1（08-15、空）、0.19.6（08-16、build.rs 入り）。Phylum の表による"
+role = "typosquat" # postgres を装ったと見られる（推測）
+ids = ["RUSTSEC-2023-0103"]
+downloads = "記録なし（RustSec）。crates.io チームは実利用の形跡なしと報告"
+
+[[members]]
+crate = "if-cfg"
+versions = "0.1.0（2023-08-15、空）、0.1.1（08-16、build.rs 入り）。Phylum の表による"
+role = "typosquat" # cfg-if を装ったと見られる（推測）
+ids = ["RUSTSEC-2023-0098"]
+downloads = "記録なし（RustSec）。crates.io チームは実利用の形跡なしと報告"
+
+[[members]]
+crate = "xrvrv"
+versions = "0.1.0（2023-08-15、空）、0.1.1（08-16、build.rs 入り）。Phylum の表による"
+role = "typosquat" # RustSec は偽装のまとまりの一部とするが、何を装ったかは不明
+ids = ["RUSTSEC-2023-0100"]
+downloads = "記録なし（RustSec）。crates.io チームは実利用の形跡なしと報告"
+
+[[members]]
+crate = "serd"
+versions = "0.4.5（2023-08-16、build.rs 入り）。Phylum の表による"
+role = "typosquat" # serde を装ったと見られる（推測）
+ids = ["RUSTSEC-2023-0102"]
+downloads = "記録なし（RustSec）。crates.io チームは実利用の形跡なしと報告"
+
+[[members]]
+crate = "oncecell"
+versions = "0.1.0（2023-08-16、build.rs 入り）。Phylum の表による"
+role = "typosquat" # once_cell を装ったと見られる（推測）
+ids = ["RUSTSEC-2023-0101"]
+downloads = "記録なし（RustSec）。crates.io チームは実利用の形跡なしと報告"
+
+[[members]]
+crate = "lazystatic"
+versions = "0.1.0（2023-08-16、build.rs 入り）。Phylum の表による"
+role = "typosquat" # lazy_static を装ったと見られる（推測）
+ids = ["RUSTSEC-2023-0097"]
+downloads = "記録なし（RustSec）。crates.io チームは実利用の形跡なしと報告"
+
+[[members]]
+crate = "envlogger"
+versions = "0.10.0（2023-08-16、build.rs 入り）。Phylum の表による"
+role = "typosquat" # env_logger を装ったと見られる（推測）
+ids = ["RUSTSEC-2023-0099"]
+downloads = "記録なし（RustSec）。crates.io チームは実利用の形跡なしと報告"
+
+[[members]]
+crate = "postgresderive"
+versions = "不明（Phylum の記事に出てこない。助言の日付は 2023-08-18）"
+role = "typosquat" # postgres-derive を装ったと見られる（推測）。中身の説明は 2026-03 に当時のメモから書かれた
+ids = ["RUSTSEC-2023-0110"]
+downloads = "記録なし（RustSec）"
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "same-publisher"
+description = "8 件の RustSec の助言が、どれも「悪性の利用者 amaperf が公開した名前の偽装のまとまりの一部」と書いている。"
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2023-0097.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0098.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0099.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0100.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0101.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0102.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0103.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0110.html",
+]
+
+[[links]]
+kind = "same-publisher-and-code"
+description = "Phylum は、postgresderive 以外の 7 つを利用者 amaperf が公開したものとして表で示し、build.rs 入りの版が同じペイロード（Telegram のボットとチャンネルへの送信）だとしている。"
+verified = "cited"
+confidence = "medium"
+sources = ["https://www.veracode.com/blog/rust-malware-staged-on-crates-io/"]
+
+[[links]]
+kind = "explicit-statement"
+description = """
+crates.io チームの事後報告が、Phylum の研究者からの 2023-08-16 の通報、1 人の利用者が公開した 9 つの crate、Telegram への送信を書き、Phylum の記事を同じ事件の記事として結んでいる。
+事後報告は crate 名と利用者名を書いていないが、通報者、日付、手口が Phylum の記事と一致する。
+"""
+verified = "cited"
+confidence = "high"
+sources = ["https://blog.rust-lang.org/inside-rust/2023/09/01/crates-io-malware-postmortem/"]
+
+[[links]]
+kind = "cross-check"
+description = """
+advisory-db の全助言を調べ、amaperf に触れているのはこの 8 件だけであることを確認した。
+7 件は 2026-03-19 に PR #2727 で、postgresderive は 2026-03-26 に PR #2747（crates.io チームのメンバーが当時のメモからまとめた記録）で追加された。
+Phylum の元の記事（2023-08-24 の Internet Archive の保存版）と Veracode に移された版で、crate の表と送信先の値が同じことを確認した。
+"""
+verified = "self"
+confidence = "high"
+sources = [
+  "https://github.com/rustsec/advisory-db/pull/2727",
+  "https://github.com/rustsec/advisory-db/pull/2747",
+]
+
+[[history]]
+date = "2026-11-20"
+change = "初版"
