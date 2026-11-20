@@ -1,6 +1,8 @@
 title: RustSecJP incidents
 description: Rust のサプライチェーン事件を、事件のまとまり（キャンペーン）単位で整理する
 lang: ja
+plugins:
+  - jekyll-sitemap
 baseurl: /incidents
 url: https://rustsecjp.github.io
 repo_url: https://github.com/RustSecJP/incidents
