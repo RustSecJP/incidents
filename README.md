@@ -2,8 +2,7 @@
 
 RustSecJP が、Rust のサプライチェーン事件（悪意のある crate など）を **事件のまとまり（キャンペーン）単位** で整理するためのリポジトリです。
 
-> [!IMPORTANT]
-> RustSecJP は非公式のコミュニティです。RustSec（Rust Secure Code WG）、Rust Project、Rust Foundation とは提携していません。
+> **重要**: RustSecJP は非公式のコミュニティです。RustSec（Rust Secure Code WG）、Rust Project、Rust Foundation とは提携していません。
 > **RUSTSEC-** から始まる助言 ID は発行しません。ここで発行するのは、複数の助言を束ねるための **キャンペーン番号（`RSJP-C-`）** だけです。
 
 ## 置いてあるもの
@@ -29,4 +28,4 @@ RustSecJP が、Rust のサプライチェーン事件（悪意のある crate �
 
 ## 草案について
 
-仕様と基準書はどちらも草案です。重みや区分は、既存の助言に当てはめて確かめながら直していきます。指摘は Issues へお願いします。関わり方は [CONTRIBUTING.md](CONTRIBUTING.md) を見てください。
+仕様と基準書はどちらも草案です。重みや区分は、既存の助言に当てはめて確かめながら直していきます。指摘は Issues へお願いします。関わり方は [CONTRIBUTING.md](https://github.com/RustSecJP/incidents/blob/main/CONTRIBUTING.md) を見てください。
