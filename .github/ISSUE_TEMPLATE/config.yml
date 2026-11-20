@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 悪意のある crate を見つけた
+    url: https://crates.io/policies
+    about: このリポジトリは報告の窓口ではありません。疑わしい crate は crates.io へ報告してください。
