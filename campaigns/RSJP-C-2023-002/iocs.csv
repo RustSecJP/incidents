@@ -1,0 +1,5 @@
+type,value,applies_to,verified,source
+crate,littest,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0104.html
+crate,tiny-server,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0114.html
+crate-version,littest 0.3.1,littest,cited,https://osv.dev/vulnerability/MAL-2023-8429
+crates.io-user,http-tiny,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0104.html

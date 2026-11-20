@@ -1,0 +1,57 @@
+id = "RSJP-C-2023-002"
+title = "利用者 http-tiny が公開した、build.rs でホストの情報を送る crate（2023年11月）"
+summary = """
+利用者 http-tiny が公開した littest と tiny-server が、build.rs でホストの情報を外部へ送るとして、2023-11 に crates.io から削除された。
+当時は公表されず、RustSec の助言は 2026-03 に、crates.io チームのメンバーが当時のメモからまとめて記録した。手口の詳しい解析は公開されていない。
+2023-08 の amaperf の事件とは、利用者が違い、つながりを示す情報も無いため、別の記録にしている。
+"""
+status = "published"
+related = ["RSJP-C-2023-001"] # 手口の説明と通報者が同じだけで、同じキャンペーンとは扱わない
+
+[dates] # すべて UTC
+first_malicious_publish = "unknown"     # 公表されていない。littest 0.3.1 は 2023-11-03 21:05 までに公開されていた（OpenSSF の判定の時刻）
+discovered = "2023-11-03T21:05:03Z"     # OpenSSF Package Analysis が littest 0.3.1 を悪性と判定（Phylum の通報の日時は公表なし）
+removed = "2023-11-06"                  # RustSec の助言の日付。削除の日時そのものは公表されていない
+
+[[members]]
+crate = "littest"
+versions = "0.3.1（OpenSSF）。そのほかの版は不明"
+role = "typosquat" # RustSec は偽装のまとまりの一部とするが、何を装ったかは不明
+ids = ["RUSTSEC-2023-0104", "GHSA-9cpx-g2hc-4j42", "MAL-2023-8429"] # GHSA は MAL の別名。RUSTSEC とは結び付けられていない
+downloads = "記録なし（RustSec）"
+
+[[members]]
+crate = "tiny-server"
+versions = "不明"
+role = "typosquat" # 何を装ったかは公表なし（tiny_http に似る、推測）
+ids = ["RUSTSEC-2023-0114"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "記録なし（RustSec）"
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "same-publisher"
+description = "2 件の RustSec の助言が、どちらも「悪性の利用者 http-tiny が公開した名前の偽装のまとまりの一部」と書いている。"
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2023-0104.html",
+  "https://rustsec.org/advisories/RUSTSEC-2023-0114.html",
+]
+
+[[links]]
+kind = "cross-check"
+description = """
+advisory-db の全助言を調べ、http-tiny に触れているのはこの 2 件だけで、2 件は同じ PR #2747 で同時に追加されたことを確認した。
+PR #2747 には「詳しく調べ直してはいない。メモに具体的な動きが無いものは、おおまかな説明を書いた」とあり、手口の説明の確かさは「中」にとどめる。
+2023-08 の amaperf の事件とは、利用者が違い、送信先やコードが同じだという情報も無いため、束ねない（文面と通報者が同じなのは根拠にしない）。
+"""
+verified = "self"
+confidence = "high"
+sources = [
+  "https://github.com/rustsec/advisory-db/pull/2747",
+  "https://github.com/rustsec/advisory-db/pull/2740",
+]
+
+[[history]]
+date = "2026-11-20"
+change = "初版"
