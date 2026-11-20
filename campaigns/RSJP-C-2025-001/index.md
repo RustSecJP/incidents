@@ -12,11 +12,11 @@
 
 ## 要約
 
-ゲノム解析ツールの crate `finch` と `finch_cli` に名前を似せた crate が、crates.io に公開されました。これらは見た目には本物の写しですが、認証情報を外部へ送る別の crate（`sha-rust`、`sha-rst`）に依存していました。
+ゲノム解析ツールの crate `finch` と `finch_cli` に名前を似せた crate が、crates.io に公開されました。これらは、認証情報を外部へ送る別の crate（`sha-rust`、`sha-rst`）に依存していました。第 1 波の `finch-rust` は、中身がほぼ本物のコピーでした（第 2 波の中身は解析が公開されていません）。
 
-事件は 2 回に分かれています。2025-12-05 に `finch-rust` と `sha-rust` が削除され、その 3 日後の 12-08 に、同じ構成の `finch-rst`、`sha-rst`、`finch_cli_rust` が公開されて、再び削除されました。RustSec の助言は crate ごとに 5 件出ていますが、この記録ではそれらを 1 つのキャンペーンとして束ねます。
+事件は 2 回に分かれています。2025-12-05 に `finch-rust` と `sha-rust` が削除され、その 3 日後の 12-08 に、同じ構成の `finch-rst`、`sha-rst`、`finch_cli_rust` が公開されて、再び削除されました。RustSec の助言は crate ごとに 1 件ずつ、計 5 件出ていますが、この記録ではそれらを 1 つのキャンペーンとして束ねます。
 
-crates.io チームは第 1 波について、依存している crate は無く、自動のミラーや検査のサービス以外にダウンロードされた形跡も無いと報告しています。
+crates.io チームは第 1 波について、この 2 つに依存する crate は無く、自動のミラーや検査のサービス以外にダウンロードされた形跡も無いと報告しています。
 
 ## 自分が影響を受けたかの確かめ方
 
@@ -61,23 +61,23 @@ ls ~/.cargo/registry/cache/*/ 2>/dev/null | grep -E '^(finch-rust|sha-rust|finch
 | 2025-12-05 15:52 | `finch-rust` と `sha-rust` が削除される。公開した利用者は無効化される | crates.io チーム |
 | 2025-12-05 | crates.io チームが報告を、Socket が解析を公開 | 両者の記事 |
 | 2025-12-08 | `finch-rst`、`sha-rst`、`finch_cli_rust` が公開される | RustSec の助言 |
-| 2025-12-09 | スウェーデンの研究機関の研究者が、Rust のセキュリティ対応チームに通報 | crates.io チーム |
+| 2025-12-09 | NGI Sweden（National Genomics Infrastructure Sweden）の研究者が通報。通報先は、crates.io チームの記事では Rust のセキュリティ対応ワーキンググループ、RustSec の助言では crates.io チーム | crates.io チーム、RustSec の助言 |
 | 2026-02-06 | 第 1 波に RustSec の番号が割り当てられ、GitHub の助言も公開される | 自分で確認 |
 | 2026-02-12 | 第 2 波に RustSec の番号が割り当てられ、GitHub の助言も公開される | 自分で確認 |
 | 2026-02-13 | crates.io チームが、通知方針の変更の記事の中で第 2 波を報告 | crates.io チーム |
 | 2026-11-20 | 5 つとも crates.io の索引に無いこと、`finch` と `finch_cli` は残っていることを確認 | 自分で確認 |
 
-第 1 波では、削除から RustSec の番号の割り当てまでに約 2 か月かかっています。この間、`cargo audit` などの助言データベースに頼る道具では、これらの crate を検出できなかったことになります。
+第 1 波では削除（12-05）から、第 2 波では通報（12-09）から、RustSec の助言が追加されるまでに、どちらも約 2 か月かかっています。`advisory-db` の履歴では、助言のファイル自体が番号の割り当てと同じ日に初めて追加されています。この間、`cargo audit` などの助言データベースに頼る道具では、これらの crate を検出できなかったことになります。
 
 ## 手口
 
 この節は、第 1 波について Socket が公開した解析によります。RustSecJP は検体を入手しておらず、自分では確認していません。
 
 - **名前の偽装**: `finch` に言語名を足した `finch-rust` という名前で、説明文も本物に似せていた。
-- **本物の写しに 1 行だけ足す**: `finch-rust` の中身はほぼ本物の `finch` の写しで、ある関数の中に `sha_rust` の関数を呼ぶ 1 行が足されていた。その前後には、目くらましの無意味なコードが置かれていた。
+- **本物のコピーに 1 行だけ足す**: `finch-rust` の中身はほぼ本物の `finch` のコピーで、ある関数の中に `sha_rust` の関数を呼ぶ 1 行が足されていた。その前後には、目くらましの無意味なコードが置かれていた。
 - **ペイロードを依存に分ける**: 認証情報を盗むコードは `sha-rust` の側にあり、`finch-rust` だけを見ても悪性とは分かりにくい。
 - **依存の版を固定しない**: `finch-rust` は `sha-rust = "0.1"` と指定していたので、`sha-rust` の新しい版が出ると、そちらが使われる。
-- **動く時点**: インストール時やビルド時ではなく、ライブラリの機能（スケッチの直列化）を使ったときに動く。
+- **動く時点**: インストール時やビルド時ではなく、ライブラリの機能（スケッチ（ゲノム配列を短く要約したデータ）の直列化）を使ったときに動く。
 - **盗むもの**: `.env`、`*.env`、`config.toml`、`id.json`。版によって、ホームディレクトリ全体を探すものと、カレントディレクトリだけを探すものがあった。ある版では、拡張子のあるファイルをほぼすべて対象にしていた。
 - **送り方**: ファイルの中身に、利用者名とローカルの IP アドレスを付けて、HTTPS の POST で外部へ送る。文字列は base64 で隠されていた。
 - **なりすまし**: crate のメタデータには、実在する別の GitHub 利用者の名前と、存在しないリポジトリの URL が書かれていた。
@@ -111,9 +111,9 @@ ls ~/.cargo/registry/cache/*/ 2>/dev/null | grep -E '^(finch-rust|sha-rust|finch
 - **crate の名前を確かめる**: 言語名を足した名前（`-rust`、`-rs`、`-rst`）は、本物の別名とは限りません。crates.io のページで、リポジトリの URL が実在するか、ダウンロード数と公開日が不自然でないかを見ます。
 - **公開されたばかりの版をすぐに使わない**: この事件の crate は、公開から削除までが 3 週間以内でした。新しい依存を足すときは、公開からの日数を見ます。
 - **依存を足すときに、その依存の依存も見る**: 悪性のコードは、装う crate ではなく、その依存の側にありました。`cargo tree` で、見慣れない名前が増えていないかを確かめます。
-- **助言データベースだけに頼らない**: 第 1 波では、削除から RustSec の番号が付くまでに約 2 か月かかりました。`cargo audit` は、番号が付くまではこれらの crate を知らせてくれません。
+- **助言データベースだけに頼らない**: 第 1 波・第 2 波とも、RustSec の助言が出るまでに約 2 か月かかりました。`cargo audit` は、番号が付くまではこれらの crate を知らせてくれません。
 
-## 確度
+## 確信度
 
 | 主張 | 確認 | 確信度 |
 |---|---|---|
@@ -121,6 +121,7 @@ ls ~/.cargo/registry/cache/*/ 2>/dev/null | grep -E '^(finch-rust|sha-rust|finch
 | 5 件の RustSec の番号と GHSA の番号の対応 | 自分で確認（助言の本文、OSV、GitHub の助言データベース） | 高 |
 | RustSec の番号が割り当てられた日 | 自分で確認（`advisory-db` のコミット履歴） | 高 |
 | 公開日、版の数、ダウンロード数、削除の時刻、通報者 | 他者の報告（crates.io チーム、RustSec の助言） | 高 |
+| RustSec の助言が追加された日 | 自分で確認（`advisory-db` のコミット履歴） | 高 |
 | 第 1 波の手口、盗むファイル、送信先 | 他者の報告（Socket） | 中 |
 | 第 2 波のペイロードが認証情報を外部へ送る | 他者の報告（RustSec の助言） | 中 |
 | 第 1 波と第 2 波が一連のものである | 自分で確認した状況からの判断 | 中 |
@@ -141,7 +142,7 @@ ls ~/.cargo/registry/cache/*/ 2>/dev/null | grep -E '^(finch-rust|sha-rust|finch
 - crates.io チーム「[crates.io: Malicious crates finch-rust and sha-rust](https://blog.rust-lang.org/2025/12/05/crates.io-malicious-crates-finch-rust-and-sha-rust/)」（2025-12-05）
 - crates.io チーム「[crates.io: an update to the malicious crate notification policy](https://blog.rust-lang.org/2026/02/13/crates.io-malicious-crate-update/)」（2026-02-13）
 - RustSec の助言: [RUSTSEC-2025-0146](https://rustsec.org/advisories/RUSTSEC-2025-0146.html)、[0148](https://rustsec.org/advisories/RUSTSEC-2025-0148.html)、[0150](https://rustsec.org/advisories/RUSTSEC-2025-0150.html)、[0151](https://rustsec.org/advisories/RUSTSEC-2025-0151.html)、[0152](https://rustsec.org/advisories/RUSTSEC-2025-0152.html)
-- [rustsec/advisory-db](https://github.com/rustsec/advisory-db) のコミット履歴（番号の割り当て: `5ebcfc04`、`be2402b5`）
+- [rustsec/advisory-db](https://github.com/rustsec/advisory-db) のコミット履歴（助言の追加: `420df2e4`、`85b79559`。番号の割り当て: `5ebcfc04`、`be2402b5`）
 
 **検知した企業の解析**
 
@@ -155,3 +156,4 @@ ls ~/.cargo/registry/cache/*/ 2>/dev/null | grep -E '^(finch-rust|sha-rust|finch
 ## 更新履歴
 
 - 2026-11-20: 初版
+- 2026-11-20: 出典と照らし合わせて直す（第 2 波の中身についての書きすぎ、第 2 波の通報先、助言が出るまでの期間）
