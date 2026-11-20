@@ -29,3 +29,7 @@ RustSecJP が、Rust のサプライチェーン事件（悪意のある crate �
 ## 草案について
 
 仕様と基準書はどちらも草案です。重みや区分は、既存の助言に当てはめて確かめながら直していきます。指摘は Issues へお願いします。関わり方は [CONTRIBUTING.md](https://github.com/RustSecJP/incidents/blob/main/CONTRIBUTING.md) を見てください。
+
+## ライセンス
+
+文章と記録は CC BY 4.0、コードは MIT です。出典を示せば、引用・転載できます。詳しくは [LICENSE.md](LICENSE.md) を見てください。
