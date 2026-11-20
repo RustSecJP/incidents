@@ -9,9 +9,9 @@ RustSecJP が、Rust のサプライチェーン事件（悪意のある crate �
 
 | 場所 | 中身 | 状態 |
 |---|---|---|
-| [`spec/campaign-id.md`](spec/campaign-id.md) | キャンペーン番号 `RSJP-C-YYYY-NNN` の仕様 | 草案 0.1 |
+| [`spec/campaign-id.md`](spec/campaign-id.md) | キャンペーン番号 `RSJP-C-YYYY-NNN` の仕様 | 0.1 版 |
 | [`spec/severity-score.md`](spec/severity-score.md) | 重要度の採点方式の試案（記録がたまってから作り直す。いまは記録に点数を付けない） | 試案 0.1 |
-| [`campaigns/_template/`](https://github.com/RustSecJP/incidents/tree/main/campaigns/_template) | キャンペーン記録のひな形 | 草案 0.1 |
+| [`campaigns/_template/`](https://github.com/RustSecJP/incidents/tree/main/campaigns/_template) | キャンペーン記録のひな形 | 0.1 版 |
 | [`campaigns/RSJP-C-2025-001/`](campaigns/RSJP-C-2025-001/index.md) | finch を装う crate と、認証情報を盗む sha-* 依存（5 crate） | 公開 |
 
 ## 方針
@@ -26,9 +26,9 @@ RustSecJP が、Rust のサプライチェーン事件（悪意のある crate �
 
 このリポジトリは報告の窓口ではありません。疑わしい crate は crates.io へ報告してください。
 
-## 草案について
+## 仕様の版について
 
-仕様と基準書はどちらも草案です。重みや区分は、既存の助言に当てはめて確かめながら直していきます。指摘は Issues へお願いします。関わり方は [CONTRIBUTING.md](https://github.com/RustSecJP/incidents/blob/main/CONTRIBUTING.md) を見てください。
+仕様と採点方式は、既存の助言や実際の記録に当てはめて確かめながら、版を重ねていきます。指摘は Issues へお願いします。関わり方は [CONTRIBUTING.md](https://github.com/RustSecJP/incidents/blob/main/CONTRIBUTING.md) を見てください。
 
 ## ライセンス
 
