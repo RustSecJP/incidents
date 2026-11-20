@@ -1,0 +1,10 @@
+type,value,applies_to,verified,source
+crate,evm-units,全13版,cited,https://blog.rust-lang.org/2025/12/03/crates.io-malicious-crates-evm-units-and-uniswap-utils/
+crate,uniswap-utils,全14版,cited,https://blog.rust-lang.org/2025/12/03/crates.io-malicious-crates-evm-units-and-uniswap-utils/
+crates.io-user,ablerust,2つとも,cited,https://blog.rust-lang.org/2025/12/03/crates.io-malicious-crates-evm-units-and-uniswap-utils/
+payload-url,hxxps://download[.]videotalks[.]xyz/gui/6dad3/id=5244544112427978&secret=NByUZrutDGoS,evm-units,cited,https://socket.dev/blog/malicious-rust-crate-evm-units-serves-cross-platform-payloads
+domain,download[.]videotalks[.]xyz,evm-units,cited,https://socket.dev/blog/malicious-rust-crate-evm-units-serves-cross-platform-payloads
+sha256,6d09e646856aa96fd118f9e5725dc8565deac4b441a96a011e528c0732db9c51,evm-unitsが落とす第2段（対象のOSは不明）,cited,https://socket.dev/blog/malicious-rust-crate-evm-units-serves-cross-platform-payloads
+file-path,<一時ディレクトリ>/init,evm-units（Linux・macOS）,cited,https://socket.dev/blog/malicious-rust-crate-evm-units-serves-cross-platform-payloads
+file-path,%TEMP%\init.ps1 / %TEMP%\init.vbs,evm-units（Windows）,cited,https://socket.dev/blog/malicious-rust-crate-evm-units-serves-cross-platform-payloads
+process-check,qhsafetray.exe,evm-units（Windows）,cited,https://socket.dev/blog/malicious-rust-crate-evm-units-serves-cross-platform-payloads

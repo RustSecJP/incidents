@@ -1,0 +1,54 @@
+id = "RSJP-C-2025-002"
+title = "EVM の道具を装う evm-units と、それを起動時に呼ぶ uniswap-utils（2025年4月〜12月）"
+summary = """
+EVM の版を返す道具を装った crate `evm-units` が、OS ごとに外部から第 2 段のスクリプトを落として、画面に何も出さずに動かしていた。
+Uniswap 用の道具を装った `uniswap-utils` は `evm-units` に依存し、#[ctor::ctor] でプログラムの起動時にそれを呼んでいた。
+2 つとも 2025 年 4 月に公開され、約 8 か月後の 2025-12-02 に削除された。目的は暗号資産を盗むことと見られている（推定）。
+"""
+status = "published"
+related = [] # 関連するキャンペーン番号
+
+[dates] # すべて UTC
+first_malicious_publish = "2025-04"    # crates.io チームの報告では「2025 年 4 月」とだけ書かれている。日と、どの版から悪性かは不明
+discovered = "2025-12-02"              # Socket から crates.io チームへの通報（時刻は不明）
+removed = "2025-12-02T22:01:00Z"       # 2 つとも削除
+
+[[members]]
+crate = "evm-units"
+versions = "13 版（2025-04 に公開）"
+role = "carrier"   # 第 2 段を落として動かす本体
+ids = ["RUSTSEC-2025-0147", "GHSA-6662-54xr-8423"]
+downloads = 7257
+
+[[members]]
+crate = "uniswap-utils"
+versions = "14 版（2025-04 に公開）"
+role = "lure"      # ふつうに働く道具を装い、evm-units に依存して起動時に呼ぶ（typosquat ではない）
+ids = ["RUSTSEC-2025-0145", "GHSA-x468-phr8-h3p3"]
+downloads = 7441
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "dependency"
+description = "uniswap-utils は evm-units に依存し、#[ctor::ctor] を付けた関数の中で evm_units::get_evm_version() を呼んでいた。"
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://blog.rust-lang.org/2025/12/03/crates.io-malicious-crates-evm-units-and-uniswap-utils/",
+  "https://rustsec.org/advisories/RUSTSEC-2025-0145.html",
+  "https://socket.dev/blog/malicious-rust-crate-evm-units-serves-cross-platform-payloads",
+]
+
+[[links]]
+kind = "same-publisher"
+description = "2 つの crate は同じ利用者が公開し、その利用者は無効化された。Socket も「同じ作者」と書いている。"
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://blog.rust-lang.org/2025/12/03/crates.io-malicious-crates-evm-units-and-uniswap-utils/",
+  "https://socket.dev/blog/malicious-rust-crate-evm-units-serves-cross-platform-payloads",
+]
+
+[[history]]
+date = "2026-11-20"
+change = "初版"
