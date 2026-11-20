@@ -13,6 +13,12 @@ RustSecJP が、Rust のサプライチェーン事件（悪意のある crate �
 | [`spec/severity-score.md`](spec/severity-score.md) | 重要度の採点方式の試案（記録がたまってから作り直す。いまは記録に点数を付けない） | 試案 0.1 |
 | [`campaigns/_template/`](https://github.com/RustSecJP/incidents/tree/main/campaigns/_template) | キャンペーン記録のひな形 | 草案 0.1 |
 | [`campaigns/RSJP-C-2025-001/`](campaigns/RSJP-C-2025-001/index.md) | finch を装う crate と、認証情報を盗む sha-* 依存（5 crate） | 公開 |
+| [`campaigns/RSJP-C-2025-002/`](campaigns/RSJP-C-2025-002/index.md) | EVM の道具を装う evm-units と、それを起動時に呼ぶ uniswap-utils（2 crate） | 公開 |
+| [`campaigns/RSJP-C-2026-001/`](campaigns/RSJP-C-2026-001/index.md) | polymarket-client-sdk を装う crate と、Polymarket の認証情報を狙う一連の公開（9 crate） | 公開 |
+| [`campaigns/RSJP-C-2026-002/`](campaigns/RSJP-C-2026-002/index.md) | 時刻ユーティリティを装い、timeapi.io に似せた送信先へ .env を送る crate（5 crate） | 公開 |
+| [`campaigns/RSJP-C-2026-003/`](campaigns/RSJP-C-2026-003/index.md) | 同じ利用者が持っていた pretty-changelog-logger、microsoftsystem64、safe-agent-rs（3 crate） | 公開 |
+| [`campaigns/RSJP-C-2026-004/`](campaigns/RSJP-C-2026-004/index.md) | arrayref など 3 つの正規 crate の乗っ取りと、proc-macro2 を装う proc-macro1（9 crate） | 公開 |
+| [`campaigns/RSJP-C-2026-005/`](campaigns/RSJP-C-2026-005/index.md) | greentic-setup と greentic-setup-dev に混入した PolinRider の亜種（2 crate） | 公開 |
 
 ## 方針
 
