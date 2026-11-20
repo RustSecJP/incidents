@@ -50,7 +50,7 @@ RSJP-C-YYYY-NNN
 - **related**: 関連するほかのキャンペーン番号
 - **history**: 更新の履歴
 
-ひな形は [`campaigns/_template/campaign.toml`](../campaigns/_template/campaign.toml) にあります。
+ひな形は [`campaigns/_template/campaign.toml`](https://github.com/RustSecJP/incidents/blob/main/campaigns/_template/campaign.toml) にあります。
 
 ## 5. 束ねる根拠の決まり
 

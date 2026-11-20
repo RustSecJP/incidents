@@ -1,0 +1,16 @@
+title: RustSecJP incidents
+description: Rust のサプライチェーン事件を、事件のまとまり（キャンペーン）単位で整理する
+lang: ja
+remote_theme: just-the-docs/just-the-docs@v0.12.0
+plugins:
+  - jekyll-remote-theme
+color_scheme: light
+search_enabled: true
+aux_links:
+  GitHub:
+    - https://github.com/RustSecJP/incidents
+  Issues:
+    - https://github.com/RustSecJP/incidents/issues
+footer_content: "RustSecJP は非公式のコミュニティです。RustSec・Rust Project・Rust Foundation とは提携していません。"
+exclude:
+  - .github
