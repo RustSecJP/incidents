@@ -1,0 +1,5 @@
+type,value,applies_to,verified,source
+crate,windowsservice,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0105.html
+crate,openvpn-plugin-rs,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0119.html
+crate,hann-rs-service,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0123.html
+crates.io-user,TerryDavisSoldier,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0105.html
