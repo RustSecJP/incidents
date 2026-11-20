@@ -1,0 +1,68 @@
+id = "RSJP-C-2026-003"
+title = "同じ利用者が持っていた pretty-changelog-logger、microsoftsystem64、safe-agent-rs（2026年3月〜4月）"
+summary = """
+crates.io の同じ利用者が持っていた 3 つの crate が、2026 年 4 月に削除された。
+pretty-changelog-logger は build.rs が悪性のペイロードのローダーとして動き、microsoftsystem64 は SSH の authorized_keys に鍵を足して、ファイルと Telegram のセッションを外部へ送る。
+safe-agent-rs は悪性のコードを直接は含んでいなかったが、同じ持ち主のものとして念のため削除された。
+"""
+status = "published"
+related = [] # 関連するキャンペーン番号
+
+[dates] # すべて UTC
+first_malicious_publish = "2026-04-08" # pretty-changelog-logger の最初の版（RustSec の助言による。時刻は不明）。safe-agent-rs（2026-03-24）は悪性のコードを直接含まないため数えない
+discovered = "2026-04-13"              # 公開の記録で最も早いもの（advisory-db の PR #2779）。Socket と sitsh が crates.io チームへ通報した日時は公表されていない
+removed = "2026-04-14"                 # 遅くともこの日。04-13 05:54Z には未削除、04-14 21:15Z には削除済みと PR で報告された。正確な時刻は公表されていない
+
+[[members]]
+crate = "pretty-changelog-logger"
+versions = "3 版（2026-04-08 に公開）"
+role = "carrier"   # build.rs が悪性のペイロードのローダー（ドロッパー）として動く
+ids = ["RUSTSEC-2026-0100"] # GHSA と MAL の番号は見つからない（2026-11-20）
+downloads = 2239   # 削除した時点の数（最初の助言の案では 2044）
+
+[[members]]
+crate = "microsoftsystem64"
+versions = "9 版（2026-04-09 に公開）"
+role = "carrier"   # SSH の authorized_keys に鍵を足し、ファイルと Telegram Desktop の tdata を外部へ送る
+ids = ["RUSTSEC-2026-0102"] # GHSA と MAL の番号は見つからない（2026-11-20）
+downloads = 6346   # 削除した時点の数（最初の助言の案では 6404）
+
+[[members]]
+crate = "safe-agent-rs"
+versions = "2 版（2026-03-24 に公開）"
+role = "same-owner" # 悪性のコードは直接は含まない（RustSec）。同じ持ち主のため念のため削除。別の WebSocket のライブラリを装っていたように見えた
+ids = ["RUSTSEC-2026-0101"] # GHSA と MAL の番号は見つからない（2026-11-20）
+downloads = 4138
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "same-publisher"
+description = """
+pretty-changelog-logger と microsoftsystem64 は同じ利用者が持っていた。
+RUSTSEC-2026-0101 の本文と、advisory-db の PR #2779 での投稿者と crates.io チームのメンバーの説明による。
+crate が削除され、利用者の名前も公表されていないため、自分では確かめられていない。
+"""
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2026-0101.html",
+  "https://github.com/rustsec/advisory-db/pull/2779",
+]
+
+[[links]]
+kind = "same-publisher"
+description = """
+safe-agent-rs は、上の 2 つと同じ利用者が持っていた（RUSTSEC-2026-0101、crates.io チームのメンバーの PR での説明）。
+つながりはこの 1 点だけで、RustSec は safe-agent-rs が悪性のコードを直接は含んでいなかったとしている。
+攻撃に使われたとは主張しない。
+"""
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2026-0101.html",
+  "https://github.com/rustsec/advisory-db/pull/2779",
+]
+
+[[history]]
+date = "2026-11-20"
+change = "初版"
