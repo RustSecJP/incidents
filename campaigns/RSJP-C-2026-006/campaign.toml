@@ -1,0 +1,61 @@
+id = "RSJP-C-2026-006"
+title = "同じ利用者が 2026 年 1 月〜2 月に公開し、ビルド環境の情報を外部へ送ろうとした electrumd と gabby-types-sec（2026年11月削除）"
+summary = """
+electrumd（2026-01 に 5 版）と gabby-types-sec（2026-02 に 1 版、版番号 99.99.99）は、ビルド環境の情報（RustSec の言う telemetry）を任意の URL へ送ろうとしたとして、2026 年 11 月に削除された。
+lib.rs の記録では、2 つとも同じ crates.io の利用者が持っていた。electrumd は、GitHub 上にある同じ名前の正規のプロジェクトと名前が重なる。
+送信先、送る中身、目的（攻撃か、調査のための試しか）は公表されていない。
+"""
+status = "published"
+related = [] # 関連するキャンペーン番号
+
+[dates] # すべて UTC
+first_malicious_publish = "2026-01-26" # electrumd（RustSec の助言による。lib.rs は 2026-01-23 と表示。時刻は不明）
+discovered = "2026-11"                 # Bitbison の通報（日付は公表されていない。助言の日付は 2026-11-09）
+removed = "2026-11"                    # 削除の日時は公表されていない。2026-11-20 に索引に無いことを確認
+
+[[members]]
+crate = "electrumd"
+versions = "5 版（RustSec は 2026-01-26 に公開とする。lib.rs は 0.0.1〜0.0.4 と 0.1.0、すべて Jan 23, 2026 と表示）"
+role = "carrier" # GitHub 上の同じ名前の正規のプロジェクト（crates.io 外）と名前が重なる
+ids = ["RUSTSEC-2026-0465"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "実利用の形跡なし（RustSec）"
+
+[[members]]
+crate = "gabby-types-sec"
+versions = "1 版（99.99.99。RustSec は 2026-02-17 に公開とする。lib.rs は Feb 18, 2026 と表示）"
+role = "carrier"
+ids = ["RUSTSEC-2026-0470"]
+downloads = "実利用の形跡なし（RustSec）"
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "same-publisher"
+description = """
+lib.rs の 2 つの crate のページが、どちらも「Owned by Protocols-sec」と表示している。
+crates.io 自体は crate を削除したため、持ち主をもう表示しない。crates.io の利用者の API では、この利用者は 2026-11-20 時点で存在し、持っている crate は 0 件だった。
+lib.rs は crates.io の情報をもとにした非公式のサイトなので、確信度は「中」にとどめる。
+"""
+verified = "self" # lib.rs の表示と crates.io の API を 2026-11-20 に確認
+confidence = "medium"
+sources = [
+  "https://lib.rs/crates/electrumd",
+  "https://lib.rs/crates/gabby-types-sec",
+  "https://crates.io/api/v1/users/Protocols-sec",
+]
+
+[[links]]
+kind = "similar-structure"
+description = """
+補強のみ（これだけでは束ねない）: lib.rs では、2 つとも build.rs を持ち、reqwest 0.11（blocking と json）と serde_json に依存し、MIT、約 13KB と表示される（electrumd では、これらはビルドのときの依存）。
+コードそのものが同じかどうか、送信先が同じかどうかは、公開された解析が無く、確認できていない。
+"""
+verified = "self"
+confidence = "low"
+sources = [
+  "https://lib.rs/crates/electrumd",
+  "https://lib.rs/crates/gabby-types-sec",
+]
+
+[[history]]
+date = "2026-11-20"
+change = "初版"
