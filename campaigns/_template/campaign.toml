@@ -1,0 +1,40 @@
+# キャンペーン記録のひな形。仕様は spec/campaign-id.md を参照。
+# 値はすべて例です。実在の事件の記録ではありません。
+
+id = "RSJP-C-YYYY-NNN"
+title = "題名"
+summary = """
+3 行ほどの要約。
+"""
+status = "draft" # draft / published / merged / withdrawn
+
+[dates] # すべて UTC
+first_malicious_publish = "YYYY-MM-DDThh:mm:ssZ"
+discovered = "YYYY-MM-DDThh:mm:ssZ"
+removed = "YYYY-MM-DDThh:mm:ssZ"
+
+[[members]]
+crate = "example-crate"
+versions = ["0.0.0"]
+role = "hijacked" # hijacked（乗っ取り）/ typosquat（偽装）/ carrier（ペイロードの運び役）
+ids = ["RUSTSEC-YYYY-NNNN"] # 既存の番号（RUSTSEC / GHSA / MAL / CVE）
+
+[[links]] # 束ねた根拠。1 件ごとに書く
+kind = "same-publisher" # same-publisher / same-endpoint / same-code / dependency など
+description = "根拠の説明"
+verified = "self" # self（自分で確認）/ cited（他者の報告に拠る）
+confidence = "high" # high / medium / low
+sources = ["https://example.invalid/report"]
+
+[score] # spec/severity-score.md を参照
+value = 0.0
+vector = "RSJP-S:0.1/K:M/I:X/T:B/U:N/S:Y/A:X/R:W/E:X/F:R"
+rationale = """
+軸ごとに、なぜその値にしたかを 1 行ずつ書く。
+"""
+
+related = [] # 関連するキャンペーン番号
+
+[[history]]
+date = "YYYY-MM-DD"
+change = "初版"
