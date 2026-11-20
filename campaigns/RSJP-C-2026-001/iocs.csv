@@ -1,0 +1,11 @@
+type,value,applies_to,verified,source
+crate,polymarket-clients-sdk,全版,cited,https://rustsec.org/advisories/RUSTSEC-2026-0010.html
+crate,polymarket-client-sdks,全版,cited,https://rustsec.org/advisories/RUSTSEC-2026-0011.html
+crate,rpc-check,全版（2026-02-15 の 3 版と 2026-02-20 以降の 6 版）,cited,https://rustsec.org/advisories/RUSTSEC-2026-0014.html https://rustsec.org/advisories/RUSTSEC-2026-0018.html
+crate,polymarkets-client-sdk,全版,cited,https://rustsec.org/advisories/RUSTSEC-2026-0015.html
+crate,polymarkets-rs-clob-client,全版,cited,https://rustsec.org/advisories/RUSTSEC-2026-0016.html
+crate,clob-sdk,全版,cited,https://rustsec.org/advisories/RUSTSEC-2026-0017.html
+crate,tracing-check,全版,cited,https://rustsec.org/advisories/RUSTSEC-2026-0019.html
+crate,tracings,全版,cited,https://rustsec.org/advisories/RUSTSEC-2026-0027.html
+crate,tracing_checks,全版（tracings に依存）,cited,https://rustsec.org/advisories/RUSTSEC-2026-0028.html
+target-env-var,POLYMARKET_PRIVATE_KEY,rpc-check（1 回目）,cited,https://rustsec.org/advisories/RUSTSEC-2026-0014.html
