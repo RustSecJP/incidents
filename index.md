@@ -8,9 +8,13 @@ title: ホーム
 
 ## キャンペーンの記録
 
+新しい順に 3 件を載せています。
+
 | 番号 | 題名 | 期間 | crate の数 |
 |---|---|---|---|
-| [`RSJP-C-2025-001`]({{ '/campaigns/RSJP-C-2025-001/' | relative_url }}) | finch を装う crate と、認証情報を盗む sha-* 依存 | 2025-11-20〜12-09 | 5 |
+| [`RSJP-C-2026-005`]({{ '/campaigns/RSJP-C-2026-005/' | relative_url }}) | greentic-setup と greentic-setup-dev に混入した PolinRider の亜種 | 2026-09-06〜09-07 | 2 |
+| [`RSJP-C-2026-004`]({{ '/campaigns/RSJP-C-2026-004/' | relative_url }}) | arrayref など 3 つの正規 crate の乗っ取りと、proc-macro2 を装う proc-macro1 | 2026-08-18〜08-20 | 9 |
+| [`RSJP-C-2026-003`]({{ '/campaigns/RSJP-C-2026-003/' | relative_url }}) | 同じ利用者が持っていた pretty-changelog-logger、microsoftsystem64、safe-agent-rs | 2026-03-24〜04-14 | 3 |
 
 [すべての記録]({{ '/campaigns/' | relative_url }}) ・ [準備中の題材]({{ site.repo_url }}/issues?q=is%3Aissue+is%3Aopen+label%3A%E8%A8%98%E4%BA%8B%E5%80%99%E8%A3%9C)
 
