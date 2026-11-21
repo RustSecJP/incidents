@@ -17,7 +17,7 @@ removed = "YYYY-MM-DDThh:mm:ssZ"
 [[members]]
 crate = "example-crate"
 versions = ["0.0.0"]
-role = "hijacked" # hijacked（乗っ取り）/ typosquat（偽装）/ carrier（ペイロードの運び役）
+role = "hijacked" # hijacked / typosquat / carrier / lure / same-owner / related（spec/campaign-id.md の表を参照）
 ids = ["RUSTSEC-YYYY-NNNN"] # 既存の番号（RUSTSEC / GHSA / MAL / CVE）
 
 [[links]] # 束ねた根拠。1 件ごとに書く
