@@ -1,0 +1,8 @@
+type,value,applies_to,verified,source
+crate,pretty-changelog-logger,pretty-changelog-logger,cited,https://rustsec.org/advisories/RUSTSEC-2026-0100.html
+crate,microsoftsystem64,microsoftsystem64,cited,https://rustsec.org/advisories/RUSTSEC-2026-0102.html
+crate,safe-agent-rs,safe-agent-rs（悪性のコードは直接は含まない。同じ持ち主のため削除）,cited,https://rustsec.org/advisories/RUSTSEC-2026-0101.html
+modified-file,~/.ssh/authorized_keys（決まった鍵を足す。鍵の値は非公表）,microsoftsystem64,cited,https://rustsec.org/advisories/RUSTSEC-2026-0102.html
+target-file,.env / 認証情報らしい名前の JSON / 決まった言葉を含む文書,microsoftsystem64,cited,https://rustsec.org/advisories/RUSTSEC-2026-0102.html
+target-file,Telegram Desktop の tdata,microsoftsystem64,cited,https://rustsec.org/advisories/RUSTSEC-2026-0102.html
+vendor-listing,pretty-changelog-logger 0.0.1 / 0.1.0 / 0.1.1,pretty-changelog-logger,cited,https://socket.dev/supply-chain-attacks/north-korea-s-contagious-interview-campaign（2026-04-09 時点のアーカイブ）
