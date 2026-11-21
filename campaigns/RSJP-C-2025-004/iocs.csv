@@ -1,0 +1,12 @@
+type,value,applies_to,verified,source
+crate,jfrog_quotes,crates.io のみ（JFrog のサンプルの社内向けライブラリは別物）,cited,https://rustsec.org/advisories/RUSTSEC-2025-0158.html
+crate,custom-req-on-workers,crates.io のみ（cloudflare/workers-rs の例は別物）,cited,https://rustsec.org/advisories/RUSTSEC-2025-0160.html
+crate,sophosfirewall-python,crates.io のみ（PyPI の同名パッケージは別物）,cited,https://rustsec.org/advisories/RUSTSEC-2025-0159.html
+crate,tree-sitter-pkl,crates.io のみ（apple/tree-sitter-pkl は別物）,cited,https://rustsec.org/advisories/RUSTSEC-2025-0156.html
+crate,statsrelay-protobuf,crates.io のみ（lyft/statsrelay の中のものは別物）,cited,https://rustsec.org/advisories/RUSTSEC-2025-0157.html
+crate-version,sophosfirewall-python 10.1.1 / 11.1.1 / 12.1.1 / 20.1.0 / 20.10.0 / 20.10.10,sophosfirewall-python,self,https://web.archive.org/web/20260316084446/https://docs.rs/crate/sophosfirewall-python/latest
+crate-version,tree-sitter-pkl 100.1.0,tree-sitter-pkl,self,https://web.archive.org/web/20260311184239/https://lib.rs/crates/tree-sitter-pkl
+crate-description,A package that captures system information and sends it to a Burp Collaborator.,sophosfirewall-python 20.10.10,self,https://web.archive.org/web/20260316084446/https://docs.rs/crate/sophosfirewall-python/latest
+crate-description,it is a only for a testing purpose,tree-sitter-pkl 100.1.0,self,https://web.archive.org/web/20260311184239/https://lib.rs/crates/tree-sitter-pkl
+build-dependencies,reqwest（blocking）/ sys-info / whoami,tree-sitter-pkl 100.1.0（build.rs あり）,self,https://web.archive.org/web/20260311184239/https://lib.rs/crates/tree-sitter-pkl
+repository-placeholder,github.com/yourusername/<crate 名>,tree-sitter-pkl / sophosfirewall-python,self,https://web.archive.org/web/20260311184239/https://lib.rs/crates/tree-sitter-pkl

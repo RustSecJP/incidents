@@ -1,0 +1,89 @@
+id = "RSJP-C-2025-004"
+title = "他社のプロジェクトにある未公開の名前で公開され、ホストの環境の情報を送ろうとした 5 つの crate（2025年1月〜8月）"
+summary = """
+JFrog、Cloudflare、Sophos、Apple、Lyft の公開リポジトリや PyPI にある名前のうち、crates.io には出ていなかった名前で、5 つの crate が公開された。
+RustSec はどれも「ホストの環境の情報を外部へ送ろうとしたキャンペーンの一部」と書いている。2 つは同じ crates.io の利用者が公開したことを確認した。
+2025-01〜08 に公開され、1 年以上残った後、2026-03-30 にまとめて削除された。実利用の形跡は無いとされる。
+"""
+status = "published"
+related = [] # 関連するキャンペーン番号
+
+[dates] # すべて UTC
+first_malicious_publish = "2025-01-30" # jfrog_quotes と custom-req-on-workers（RustSec の助言の date。時刻は不明）
+discovered = "不明"                     # 通報者と通報日は公表されていない
+removed = "2026-03-30"                 # advisory-db のコミット efec1b26（21:30Z）の「本日削除した 5 つ」による。削除の時刻は不明
+
+[[members]]
+crate = "jfrog_quotes"
+versions = "1 版（2025-01 に公開。版番号 0.1.1 は検索エンジンの要約でのみ確認）"
+role = "carrier" # 名前は JFrog の公開サンプルにある社内向けライブラリと同じ
+ids = ["RUSTSEC-2025-0158"] # GHSA と MAL の番号は 2026-11-20 時点で見つからない
+downloads = "実利用の形跡なし（RustSec）"
+
+[[members]]
+crate = "custom-req-on-workers"
+versions = "1 版（2025-01 に公開）"
+role = "carrier" # 名前は cloudflare/workers-rs の未公開の例と同じ
+ids = ["RUSTSEC-2025-0160"]
+downloads = "実利用の形跡なし（RustSec）"
+
+[[members]]
+crate = "sophosfirewall-python"
+versions = "6 版（10.1.1、11.1.1、12.1.1、20.1.0、20.10.0、20.10.10。docs.rs の記録では 2025-02-16 に公開。RustSec の date は 2025-02-15）"
+role = "carrier" # 名前は PyPI にある Sophos Firewall 用の Python SDK と同じ
+ids = ["RUSTSEC-2025-0159"]
+downloads = "実利用の形跡なし（RustSec）"
+
+[[members]]
+crate = "tree-sitter-pkl"
+versions = "1 版（100.1.0、2025-03-10 に公開）"
+role = "carrier" # 名前は apple/tree-sitter-pkl の Cargo.toml と同じ
+ids = ["RUSTSEC-2025-0156"]
+downloads = "実利用の形跡なし（RustSec）"
+
+[[members]]
+crate = "statsrelay-protobuf"
+versions = "1 版（2025-08 に公開。版番号は不明）"
+role = "carrier" # 名前は lyft/statsrelay のワークスペースの一員と同じ
+ids = ["RUSTSEC-2025-0157"]
+downloads = "実利用の形跡なし（RustSec）"
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "explicit-statement"
+description = """
+5 件の RustSec の助言が、どれも同じ文「ホストの環境の情報を外部へ送ろうとしたキャンペーンの一部だった」を持つ。advisory-db の中でこの言い回しを使うのは、この 5 件だけ。
+5 件は crates.io チームの一員が 1 つのコミット（efec1b26、「本日削除した 5 つの crate の助言を追加」）でまとめて追加した。
+ただし助言は「a campaign」と書くだけで、ほかの 4 つと同じキャンペーンだとは明記していない。PR #2755 にも説明は無い。
+"""
+verified = "self" # advisory-db を検索し、コミットと PR を確認
+confidence = "medium"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2025-0156.html",
+  "https://rustsec.org/advisories/RUSTSEC-2025-0157.html",
+  "https://rustsec.org/advisories/RUSTSEC-2025-0158.html",
+  "https://rustsec.org/advisories/RUSTSEC-2025-0159.html",
+  "https://rustsec.org/advisories/RUSTSEC-2025-0160.html",
+  "https://github.com/rustsec/advisory-db/pull/2755",
+]
+
+[[links]]
+kind = "same-publisher"
+description = "tree-sitter-pkl と sophosfirewall-python は、同じ crates.io の利用者が所有していた（利用者の名前は、実在の個人の可能性があるので載せない）。Web アーカイブに残る lib.rs（2026-03-11）と docs.rs（2026-03-16）のページで確認した。"
+verified = "self"
+confidence = "high"
+sources = [
+  "https://web.archive.org/web/20260311184239/https://lib.rs/crates/tree-sitter-pkl",
+  "https://web.archive.org/web/20260316084446/https://docs.rs/crate/sophosfirewall-python/latest",
+]
+
+[[links]]
+kind = "same-publisher"
+description = "jfrog_quotes の作者も同じ利用者だったと、crate の情報を集めたサイト rust-digger のページを要約した検索結果にある。そのページは 2026-11-20 時点で 404 で、アーカイブも見つからず、自分では確認できていない。"
+verified = "cited"
+confidence = "low"
+sources = ["https://rust-digger.code-maven.com/crates/jfrog_quotes"]
+
+[[history]]
+date = "2026-11-20"
+change = "初版"
