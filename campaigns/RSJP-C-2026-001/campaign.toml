@@ -1,0 +1,148 @@
+id = "RSJP-C-2026-001"
+title = "polymarket-client-sdk を装う crate と、Polymarket の認証情報を狙う一連の公開（2026年2月）"
+summary = """
+Polymarket の公式 Rust クライアント `polymarket-client-sdk` の周りで、名前を似せた悪性の crate 9 つが 2026-02-05〜02-26 に次々と公開され、認証情報（環境変数 POLYMARKET_PRIVATE_KEY を含む）を盗もうとした。
+RustSec の助言は 10 件（rpc-check は 2 回公開されたため 2 件）。後の 6 件は本文で「進行中のキャンペーンの一部」と明記している。
+前の 4 件は同じ crate を装うことと助言の記述から束ねたが、確信度は中。
+"""
+status = "published"
+related = [] # 関連するキャンペーン番号
+
+[dates] # すべて UTC
+first_malicious_publish = "2026-02-05" # polymarket-clients-sdk の 6 版（RustSec の助言による。時刻は不明）
+discovered = "2026-02-06"              # Socket から crates.io チームへの通報
+removed = "2026-02-26"                 # 最後の削除（tracings、tracing_checks。公開の約 9 時間後）。各 crate の削除時刻は公表されていない
+
+[[members]]
+crate = "polymarket-clients-sdk"
+versions = "6 版（2026-02-05 に公開）"
+role = "typosquat" # polymarket-client-sdk を装う（clients）
+ids = ["RUSTSEC-2026-0010", "GHSA-382q-fpqh-29f7"]
+downloads = 59
+
+[[members]]
+crate = "polymarket-client-sdks"
+versions = "1 版（2026-02-09 に公開）"
+role = "typosquat" # polymarket-client-sdk を装う（sdks）
+ids = ["RUSTSEC-2026-0011", "GHSA-p5vf-5754-x7p3"]
+downloads = 33
+
+[[members]]
+crate = "rpc-check"
+versions = "1 回目: 3 版（2026-02-15 に公開）"
+role = "carrier" # POLYMARKET_PRIVATE_KEY を盗む。何を装ったかは不明
+ids = ["RUSTSEC-2026-0014"]
+downloads = 155
+
+[[members]]
+crate = "polymarkets-client-sdk"
+versions = "1 版（2026-02-19 に公開、約 1 時間で削除）"
+role = "typosquat" # polymarket-client-sdk を装う（polymarkets）
+ids = ["RUSTSEC-2026-0015"]
+downloads = 0
+
+[[members]]
+crate = "polymarkets-rs-clob-client"
+versions = "1 版（2026-02-19 に公開、約 20 時間で削除）"
+role = "typosquat"
+ids = ["RUSTSEC-2026-0016"]
+# downloads: 助言は「実利用の形跡なし」とだけ書く
+
+[[members]]
+crate = "clob-sdk"
+versions = "1 版（2026-02-20 に公開、約 4 時間で削除）"
+role = "typosquat"
+ids = ["RUSTSEC-2026-0017"]
+# downloads: 助言は「実利用の形跡なし」とだけ書く
+
+[[members]]
+crate = "rpc-check"
+versions = "2 回目: 6 版（2026-02-20 以降に公開）"
+role = "carrier" # 1 回目の削除後、同じ名前で再び公開
+ids = ["RUSTSEC-2026-0018"]
+# downloads: 助言は「実利用の形跡なし」とだけ書く
+
+[[members]]
+crate = "tracing-check"
+versions = "1 版（2026-02-24 に公開、約 4 時間で削除）"
+role = "typosquat"
+ids = ["RUSTSEC-2026-0019", "GHSA-5pmp-jpcf-pwx6"]
+# downloads: 助言は「実利用の形跡なし」とだけ書く
+
+[[members]]
+crate = "tracings"
+versions = "1 版（2026-02-26 に公開、約 9 時間で削除）"
+role = "carrier" # ペイロードの本体。tracing_checks から使われた
+ids = ["RUSTSEC-2026-0027"]
+
+[[members]]
+crate = "tracing_checks"
+versions = "1 版（2026-02-26 に公開、約 9 時間で削除）"
+role = "typosquat" # 自分はペイロードを持たず、tracings に依存する
+ids = ["RUSTSEC-2026-0028"]
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "explicit-statement"
+description = """
+polymarkets-rs-clob-client、clob-sdk、rpc-check（2 回目）、tracing-check、tracings、tracing_checks の 6 件の助言は、
+本文で「進行中のキャンペーンの一部（part of an ongoing campaign）」と明記している。
+"""
+verified = "cited" # 助言の本文は advisory-db で自分で読んだ。判断そのものは RustSec / crates.io チームによる
+confidence = "high"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2026-0016.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0017.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0018.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0019.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0027.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0028.html",
+]
+
+[[links]]
+kind = "dependency"
+description = "tracing_checks はペイロードを持たず、依存する tracings から悪性のコードを持ち込んだ。tracings に依存するのは tracing_checks だけだった。"
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2026-0027.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0028.html",
+]
+
+[[links]]
+kind = "same-target-and-statement"
+description = """
+polymarket-clients-sdk、polymarket-client-sdks、polymarkets-client-sdk の 3 つは、どれも polymarket-client-sdk を 1 文字違いで装い、ローカルのファイルから認証情報を盗もうとした。
+polymarkets-client-sdk の助言は「Polymarket の認証情報を盗むことにとても熱心に見えるこの攻撃者」と書き、同じ攻撃者を前提にしている。
+ただし、この 3 件の助言は「キャンペーン」と書いておらず、公開した利用者が同じかどうかも公表されていない。
+"""
+verified = "self" # 助言 10 件と crates.io チームの記事を突き合わせた判断
+confidence = "medium"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2026-0010.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0011.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0015.html",
+  "https://blog.rust-lang.org/2026/02/13/crates.io-malicious-crate-update/",
+  "https://github.com/rustsec/advisory-db/pull/2642",
+]
+
+[[links]]
+kind = "same-name-and-target"
+description = """
+rpc-check（1 回目、RUSTSEC-2026-0014）は環境変数 POLYMARKET_PRIVATE_KEY を盗もうとした。
+同じ名前で再び公開された 2 回目（RUSTSEC-2026-0018）は、キャンペーンの一部と明記されている。
+1 回目の助言自体は「キャンペーン」と書いておらず、2 回の公開者が同じかどうかも公表されていない。
+"""
+verified = "self" # advisory-db の履歴（fad1dc06、93a91720）と助言の本文で確認
+confidence = "medium"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2026-0014.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0018.html",
+  "https://github.com/rustsec/advisory-db/pull/2669",
+]
+
+# 束ねなかったもの: tracing-ethers（RUSTSEC-2026-0040）。時期と名前は近いが、Polymarket にもキャンペーンにも触れる出典が無い。
+
+[[history]]
+date = "2026-11-20"
+change = "初版"
