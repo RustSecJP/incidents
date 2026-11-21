@@ -1,0 +1,144 @@
+id = "RSJP-C-2026-004"
+title = "arrayref など 3 つの正規 crate の乗っ取りと、proc-macro2 を装う proc-macro1（2026年8月）"
+summary = """
+正規の crate arrayref、internment、append-only-vec の新しい版が、本来の所有者のアカウントから公開され、proc-macro2 を装う proc-macro1 への依存が足された。
+proc-macro1 の build.rs は、ビルド時に外部から実行ファイルを取ってきて動かす。悪性の版は 86〜107 分で削除され、攻撃者が取り消した古い版は元に戻された。
+同じ build.rs を持つ proc-macro-en と、関係する 4 つの crate（aovine、arone、aronenao、tinymember）も同じ日に削除された。
+"""
+status = "published"
+related = [] # 関連するキャンペーン番号
+
+[dates] # すべて UTC
+first_malicious_publish = "2026-08-20T07:11:15Z" # proc-macro1 1.0.107（StepSecurity による）。arone / aronenao の最後の版は 2026-08-18 だが、悪性かどうか出典で食い違う
+discovered = "2026-08-20T07:15:00Z"              # Rust のセキュリティ対応チームが報告を受けた時刻（同チームの記事による）
+removed = "2026-08-20T09:25:24Z"                 # 最後に削除された append-only-vec 0.1.9。ほかの 5 つの crate の削除時刻は公表されていない
+
+# ---- 乗っ取られた正規の crate ----
+[[members]]
+crate = "arrayref"
+versions = ["0.3.10"] # 0.3.9 以前は問題ない（0.3.5〜0.3.9 は攻撃者に取り消されたが、元に戻された）
+role = "hijacked"
+ids = ["RUSTSEC-2026-0260", "GHSA-jwh4-228v-r358", "MAL-2026-14336"]
+downloads = 2285 # 0.3.10 のダウンロード数（RustSec の助言による）
+
+[[members]]
+crate = "internment"
+versions = ["0.8.7"] # 0.8.6 以前は問題ない
+role = "hijacked"
+ids = ["RUSTSEC-2026-0266", "GHSA-mxq3-8c5w-crcm", "MAL-2026-14337"]
+
+[[members]]
+crate = "append-only-vec"
+versions = ["0.1.9（2026-08-20 公開のもの）"] # 0.1.8 以前、0.1.10、2026-10-18 に出し直された 0.1.9 は問題ない
+role = "hijacked"
+ids = ["RUSTSEC-2026-0262", "GHSA-m9v3-f7h2-72cp", "MAL-2026-14333"]
+
+# ---- 攻撃者の crate ----
+[[members]]
+crate = "proc-macro1"
+versions = ["すべて（1.0.106、1.0.107）"] # 悪性の build.rs は 1.0.107。1.0.106 は proc-macro2 のコピー
+role = "carrier" # proc-macro2 を装い、build.rs でペイロードを取ってくる
+ids = ["RUSTSEC-2026-0265", "GHSA-m83q-4x86-96wh", "MAL-2026-14338"]
+
+[[members]]
+crate = "proc-macro-en"
+versions = ["すべて（1 版）"]
+role = "carrier" # proc-macro1 と同じ build.rs を持つ予備
+ids = ["RUSTSEC-2026-0264", "GHSA-4v73-396v-6ph9", "MAL-2026-14339"]
+
+[[members]]
+crate = "arone"
+versions = ["すべて（7 版）"]
+role = "related" # 同じ事件として削除された。悪性かどうかは RustSec と Socket で食い違う
+ids = ["RUSTSEC-2026-0259", "GHSA-7h2v-6jmm-f43m", "MAL-2026-14334"]
+
+[[members]]
+crate = "aronenao"
+versions = ["すべて（11 版）"]
+role = "related" # arone と同じ
+ids = ["RUSTSEC-2026-0261", "GHSA-vqfg-g9r4-x39f", "MAL-2026-14335"]
+
+[[members]]
+crate = "aovine"
+versions = ["すべて"]
+role = "related" # 同じ事件として削除された。RustSec の助言は無い
+ids = ["GHSA-r47g-vj55-h745", "MAL-2026-14332"]
+
+[[members]]
+crate = "tinymember"
+versions = ["すべて（2 版）"]
+role = "related" # arone / aronenao と同じ所有者。悪性のコードは無し
+ids = ["RUSTSEC-2026-0263", "GHSA-jpmw-jcm2-3wcq", "MAL-2026-14340"]
+downloads = 27
+
+# ---- 束ねた根拠 ----
+[[links]]
+kind = "dependency"
+description = "arrayref 0.3.10、internment 0.8.7、append-only-vec 0.1.9 は、どれも proc-macro1 に直接依存していた。"
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0260.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0262.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0266.html",
+  "https://socket.dev/blog/popular-rust-crates-compromised",
+]
+
+[[links]]
+kind = "same-publisher"
+description = "正規の 3 つの crate の悪性の版は、同じ所有者のアカウントから 23 分の間に公開された。Rust のセキュリティ対応チームは、所有者のコンピューターか認証情報が侵害されたと見ている。"
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/",
+  "https://www.stepsecurity.io/blog/arrayref-rust-crate-supply-chain-attack",
+]
+
+[[links]]
+kind = "same-code"
+description = "proc-macro-en は proc-macro1 と同じ build.rs を持っていた（Socket は同じハッシュとしている）。"
+verified = "cited"
+confidence = "high"
+sources = [
+  "https://rustsec.org/advisories/RUSTSEC-2026-0264.html",
+  "https://socket.dev/blog/popular-rust-crates-compromised",
+]
+
+[[links]]
+kind = "official-statement"
+description = """
+Rust のセキュリティ対応チームは、aovine、arone、aronenao、tinymember を proc-macro1 と同じ事件の crate として削除し、確かめ方の対象に含めた。
+RustSec の助言（arone、aronenao）は「arrayref の利用者を狙った攻撃の一部」と明記している。
+ただし、本体との具体的なつながり（依存関係、公開者、通信先）は公表されておらず、arone / aronenao が悪性だったかは RustSec と Socket で食い違う。
+"""
+verified = "cited"
+confidence = "medium"
+sources = [
+  "https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0259.html",
+  "https://rustsec.org/advisories/RUSTSEC-2026-0261.html",
+  "https://socket.dev/blog/popular-rust-crates-compromised",
+]
+
+[[links]]
+kind = "same-publisher"
+description = "tinymember は、arone、aronenao と同じ利用者が所有していた。tinymember 自体に悪性のコードは無かった。"
+verified = "cited"
+confidence = "medium"
+sources = ["https://rustsec.org/advisories/RUSTSEC-2026-0263.html"]
+
+[[links]]
+kind = "same-advisory-batch"
+description = "8 つの RUSTSEC はすべて同じ記事を参照し、同じ日に 2 つのプルリクエスト（#3162、#3163）で追加され、1 つのコミット（42ead52a）で番号が割り当てられた。9 つの MAL も同じ攻撃の一部と書いている。"
+verified = "self" # advisory-db のコミット履歴、OSV、GitHub の助言データベースで確認
+confidence = "high"
+sources = [
+  "https://github.com/rustsec/advisory-db/commit/42ead52a",
+  "https://github.com/rustsec/advisory-db/pull/3162",
+  "https://github.com/rustsec/advisory-db/pull/3163",
+]
+
+[[history]]
+date = "2026-11-20"
+change = "初版"

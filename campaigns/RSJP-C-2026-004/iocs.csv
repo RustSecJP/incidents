@@ -1,0 +1,42 @@
+type,value,applies_to,verified,source
+crate-version,arrayref 0.3.10,乗っ取られた版,cited,https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/
+crate-version,internment 0.8.7,乗っ取られた版,cited,https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/
+crate-version,append-only-vec 0.1.9（2026-08-20 公開のもの。2026-10-18 に出し直された 0.1.9 は問題ない）,乗っ取られた版,cited,https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/
+crate,proc-macro1,すべての版,cited,https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/
+crate,proc-macro-en,すべての版,cited,https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/
+crate,aovine,すべての版,cited,https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/
+crate,arone,すべての版,cited,https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/
+crate,aronenao,すべての版,cited,https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/
+crate,tinymember,すべての版,cited,https://blog.rust-lang.org/2026/08/20/supply-chain-attack-on-arrayref/
+crates.io-user,dtolney,proc-macro1 の公開者,cited,https://www.stepsecurity.io/blog/arrayref-rust-crate-supply-chain-attack
+payload-url,hxxps://23[.]254[.]165[.]112:9089/rust-crate_0.1.0,build.rs（Linux x86-64）,cited,https://github.com/rustsec/advisory-db/issues/3161
+payload-url,hxxps://23[.]254[.]165[.]112:9089/rust-crate_0.2.0,build.rs（Windows x86-64）,cited,https://github.com/rustsec/advisory-db/issues/3161
+payload-url,hxxps://23[.]254[.]165[.]112:9089/rust-crate_0.3.0,build.rs（macOS x86-64）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+payload-url,hxxps://23[.]254[.]165[.]112:9089/rust-crate_0.4.0,build.rs（macOS arm64）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+c2,23[.]254[.]165[.]112:443,第 2 段（build.rs から引数で渡される）,cited,https://github.com/rustsec/advisory-db/issues/3161
+c2-url,hxxps://23[.]254[.]165[.]112:443/49890878,第 2 段,cited,https://socket.dev/blog/popular-rust-crates-compromised
+c2,23[.]254[.]167[.]107,第 2 段（advisory-db#3161 のコメント。未確認の報告）,cited,https://github.com/rustsec/advisory-db/issues/3161
+c2,23[.]254[.]167[.]216,第 2 段（advisory-db#3161 のコメント。未確認の報告）,cited,https://github.com/rustsec/advisory-db/issues/3161
+file,/tmp/rust-setup,build.rs（Linux / macOS）,cited,https://github.com/rustsec/advisory-db/issues/3161
+file,%TEMP%\rust-setup.ps1,build.rs（Windows）,cited,https://github.com/rustsec/advisory-db/issues/3161
+file,%TEMP%\rust-setup-launch.vbs,build.rs（Windows）,cited,https://github.com/rustsec/advisory-db/issues/3161
+systemd-unit,Description=System Config User Service,第 2 段（Linux。被害を受けた利用者の解析）,cited,https://github.com/rustsec/advisory-db/issues/3161
+sha256,25ad700976873c76af785cb99b33c48db7df8b81f21d1e9e06b3676b9a9373ae,arrayref-0.3.10.crate,cited,https://github.com/rustsec/advisory-db/issues/3161
+sha256,61198155da51b838772eecf5bfaac6cbc4dcc388dccc56658fc28a8e831b34d4,proc-macro1-1.0.107.crate,cited,https://github.com/rustsec/advisory-db/issues/3161
+sha256,b5c1b5b0763a8809a644a8f92224653f0aca623a98eecc714d27f74b80fbe436,proc-macro1-1.0.106.crate（悪性のコードは無し）,cited,https://github.com/rustsec/advisory-db/issues/3161
+sha256,cb7778eb6dda91028abf087eb7c3553f981a67e756769507d348e8c201805568,build.rs（proc-macro1 1.0.107 と proc-macro-en 1.0.10）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+sha256,408ef22050ffc5a67e005802809026b29f297a8019f8fda91a2afa8e877ba434,第 2 段（Linux x86-64）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+sha256,492f2ab86f8d8911adc79c10ec1541704f5311d207d9d799b0d2a57fcc6a4391,第 2 段（Windows x86-64）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+sha256,c9561a3b00a0fa38b7772675d987f84bd429c55cd024fc08a98245c2d1632848,第 2 段（macOS x86-64）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+sha256,74d3447e7cf99c99ea01a16332ec27432dfb0f491e10e67cd118065a60483306,第 2 段（macOS arm64）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+sha256-clean,879ffa3e767bd8a7b9caf295630087b28e0a04b55603c6376a971c7a4cf5514e,append-only-vec 0.1.9（2026-10-18 に出し直した問題ない版。見分け用）,self,https://index.crates.io/ap/pe/append-only-vec
+dga-domain,rasGThauFD[.]com,第 2 段の予備の通信先（2026-08-20〜24 分。登録されているとは限らない）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+dga-domain,feVVKIiEiU[.]com,第 2 段の予備の通信先（2026-08-20〜24 分。登録されているとは限らない）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+dga-domain,phrpjTNckF[.]com,第 2 段の予備の通信先（2026-08-20〜24 分。登録されているとは限らない）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+dga-domain,PrOkXLgfjW[.]com,第 2 段の予備の通信先（2026-08-20〜24 分。登録されているとは限らない）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+dga-domain,ackeoTaWtl[.]com,第 2 段の予備の通信先（2026-08-20〜24 分。登録されているとは限らない）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+dga-domain,GAFWVCMAja[.]com,第 2 段の予備の通信先（2026-08-20〜24 分。登録されているとは限らない）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+dga-domain,RNSsddnEgK[.]com,第 2 段の予備の通信先（2026-08-20〜24 分。登録されているとは限らない）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+dga-domain,pfHlVOqEeg[.]com,第 2 段の予備の通信先（2026-08-20〜24 分。登録されているとは限らない）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+dga-domain,aBEcOrkups[.]com,第 2 段の予備の通信先（2026-08-20〜24 分。登録されているとは限らない）,cited,https://socket.dev/blog/popular-rust-crates-compromised
+dga-domain,epOdIaTMaM[.]com,第 2 段の予備の通信先（2026-08-20〜24 分。登録されているとは限らない）,cited,https://socket.dev/blog/popular-rust-crates-compromised
