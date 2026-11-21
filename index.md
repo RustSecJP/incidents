@@ -16,8 +16,8 @@ title: ホーム
 
 ## 仕様
 
-- [キャンペーン番号 `RSJP-C` の仕様]({{ '/spec/campaign-id.html' | relative_url }})（草案 0.1）
-- [重要度の採点方式の試案]({{ '/spec/severity-score.html' | relative_url }})（草案 0.1。記録が 10 件ほどたまってから、実例に合わせて作り直す予定で、いまは記録には点数を付けていません）
+- [キャンペーン番号 `RSJP-C` の仕様]({{ '/spec/campaign-id.html' | relative_url }})（0.1 版）
+- [重要度の採点方式の試案]({{ '/spec/severity-score.html' | relative_url }})（試案 0.1 版。記録が 10 件ほどたまってから、実例に合わせて作り直す予定で、いまは記録には点数を付けていません）
 
 ## 方針
 
@@ -37,4 +37,4 @@ title: ホーム
 
 RustSecJP は**非公式**のコミュニティです。RustSec（Rust Secure Code WG）、Rust Project、Rust Foundation とは提携していません。**RUSTSEC-** から始まる助言 ID は発行しません。
 
-仕様と採点方式はどちらも草案です。意見は [Issues]({{ site.repo_url }}/issues) へお願いします。
+仕様と採点方式は、実際の記録に当てはめながら版を重ねていきます。意見は [Issues]({{ site.repo_url }}/issues) へお願いします。
