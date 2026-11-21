@@ -1,0 +1,5 @@
+type,value,applies_to,verified,source
+crate,electrumd,全体,cited,https://rustsec.org/advisories/RUSTSEC-2026-0465.html
+crate,gabby-types-sec,全体,cited,https://rustsec.org/advisories/RUSTSEC-2026-0470.html
+crates.io-user,Protocols-sec,全体（lib.rs の表示による。crates.io は削除済みの crate の持ち主を表示しない）,self,https://lib.rs/crates/electrumd
+crate-version,gabby-types-sec 99.99.99,gabby-types-sec,self,https://lib.rs/crates/gabby-types-sec
