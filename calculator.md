@@ -5,7 +5,7 @@ wide: true
 ---
 # RSJP Score 計算ツール
 
-軸を選ぶと、点数と内訳の文字列がその場で出ます。式と重みは[採点方式（試案 0.1 版）]({{ '/spec/severity-score.html' | relative_url }})のとおりです。試案なので、点数は今後変わることがあります。
+軸を選ぶと、点数と内訳の文字列がその場で出ます。式と重みは[採点方式（試案）]({{ '/spec/severity-score.html' | relative_url }})のとおりです。試案なので、点数は今後変わることがあります。
 
 <div class="calc" data-no-toc markdown="0">
   <div class="axes" id="axes"></div>

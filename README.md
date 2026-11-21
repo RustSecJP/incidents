@@ -18,10 +18,10 @@ RSJP Score は、Rust に固有の事情を軸にして点数を出します。�
 
 | 場所 | 中身 | 状態 |
 |---|---|---|
-| [`spec/severity-score.md`](spec/severity-score.md) | RSJP Score の仕様と、[計算ツール](https://rustsecjp.github.io/incidents/calculator.html) | 試案 0.1 版 |
+| [`spec/severity-score.md`](spec/severity-score.md) | RSJP Score の仕様と、[計算ツール](https://rustsecjp.github.io/incidents/calculator.html) | 試案 |
 | [`campaigns/`](https://rustsecjp.github.io/incidents/campaigns/) | 事件のまとまり（キャンペーン）ごとの記録。複数の crate にまたがる攻撃を `RSJP-C-YYYY-NNN` の番号で束ねる | 公開中 |
 | [`advisories/`](https://rustsecjp.github.io/incidents/advisories/) | RustSec の助言の日本語版。原文の訳に、確かめ方と直し方を足したもの | 公開中 |
-| [`spec/campaign-id.md`](spec/campaign-id.md) | キャンペーン番号の仕様 | 0.1 版 |
+| [`spec/campaign-id.md`](spec/campaign-id.md) | キャンペーン番号の仕様 | 運用中 |
 
 ## これからの進め方
 
