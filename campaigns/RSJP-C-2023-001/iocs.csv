@@ -1,0 +1,14 @@
+type,value,applies_to,verified,source
+crate,lazystatic,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0097.html
+crate,if-cfg,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0098.html
+crate,envlogger,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0099.html
+crate,xrvrv,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0100.html
+crate,oncecell,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0101.html
+crate,serd,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0102.html
+crate,postgress,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0103.html
+crate,postgresderive,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0110.html
+crates.io-user,amaperf,全体,cited,https://rustsec.org/advisories/RUSTSEC-2023-0097.html
+telegram-bot-id,6365984299,build.rs 入りの版（鍵の後半は載せない）,cited,https://www.veracode.com/blog/rust-malware-staged-on-crates-io/
+telegram-chat-id,-1001901628644,build.rs 入りの版,cited,https://www.veracode.com/blog/rust-malware-staged-on-crates-io/
+exfil-endpoint,hxxps://api[.]telegram[.]org/bot6365984299:<鍵>/sendMessage,build.rs 入りの版（api.telegram.org 自体は正規のサービス）,cited,https://www.veracode.com/blog/rust-malware-staged-on-crates-io/
+build-artifact,$OUT_DIR/mutex,build.rs 入りの版（一般的な名前なので crate 名と合わせて見る）,cited,https://www.veracode.com/blog/rust-malware-staged-on-crates-io/
