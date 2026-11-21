@@ -26,7 +26,7 @@ RSJP Score は、Rust に固有の事情を軸にして点数を出します。�
 ## これからの進め方
 
 1. **材料を集める**: キャンペーン記録と、助言の日本語版を増やします。候補は [Issues](https://github.com/RustSecJP/incidents/issues) にあります（ラベル「記事候補」「日本語版」）。
-2. **物差しを当ててみる**: 集めた記録と助言に RSJP Score を当て、CVSS との違いと、重みの妥当さを確かめます（[#13](https://github.com/RustSecJP/incidents/issues/13)、[#14](https://github.com/RustSecJP/incidents/issues/14)）。
+2. **物差しを当ててみる**: 集めた記録と助言に RSJP Score を当て、CVSS との違いと、重みの妥当さを確かめます（[#15](https://github.com/RustSecJP/incidents/issues/15)、[#16](https://github.com/RustSecJP/incidents/issues/16)）。
 3. **作り直す**: 結果をもとに、軸と重みを直して版を上げます。それまでは、記録に点数は付けません。
 
 ## 方針
